@@ -673,27 +673,83 @@
     }
 
     @media (max-width: 680px) {
-      .hero { min-height: 86vh; }
-      .hero-inner { width: min(100% - 28px, 1180px); padding-bottom: 84px; }
-      .hero-stats,
-      .route-grid,
-      .transport,
-      .worth-grid,
-      .booking-grid,
-      .source-grid { grid-template-columns: 1fr; }
-      .nav-inner { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0 8px; }
-      .wrap { width: min(100% - 28px, 1180px); }
-      section { padding: 52px 0; }
-      .day { grid-template-columns: 1fr; }
-      .date { min-height: 116px; }
-      .day-body { padding: 12px; }
-      .day-modules {
-        grid-template-columns: 420px 170px 250px;
+      body { line-height: 1.5; }
+      .wrap { width: min(100% - 20px, 1180px); }
+      section { padding: 20px 0 28px; }
+      .section-head {
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      h2 { font-size: 30px; }
+      .lead {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .filters {
+        flex-wrap: nowrap;
         overflow-x: auto;
+        margin: 0 -10px 14px;
+        padding: 0 10px 4px;
         -webkit-overflow-scrolling: touch;
       }
+      .filter-btn {
+        padding: 7px 10px;
+        font-size: 13px;
+      }
+      .day-list { gap: 12px; }
+      .day { grid-template-columns: 1fr; }
+      .date {
+        min-height: auto;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        align-content: center;
+        gap: 8px 12px;
+        padding: 12px 14px;
+      }
+      .date strong { font-size: 22px; }
+      .date span {
+        margin-top: 0;
+        font-size: 12px;
+      }
+      .date em {
+        grid-column: 1 / -1;
+        margin-top: 0;
+        font-size: 14px;
+      }
+      .day-body { padding: 10px; }
+      .day h3 {
+        margin-bottom: 9px;
+        font-size: 15px;
+      }
+      .day-modules {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        overflow: visible;
+        padding-bottom: 0;
+      }
+      .day-module {
+        padding: 10px;
+        border-radius: 7px;
+      }
+      .day-module strong {
+        margin-bottom: 6px;
+        font-size: 11px;
+      }
+      .combo-plan {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .combo-time {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 0 0 8px;
+      }
+      .mini-list {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
       .timeline li { grid-template-columns: 62px minmax(0, 1fr); }
-      .city-card { min-height: 260px; }
+      .todo-groups { gap: 9px; }
     }
 
     @media print {
