@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>西班牙葡萄牙行程 | 2026.09.26-10.09</title>
+  <style>
+    :root {
+      --ink: #1e252b;
+      --muted: #667085;
+      --line: #d7dee8;
+      --paper: #f6f7f9;
+      --soft: #eef1f4;
+      --terracotta: #b85c38;
+      --olive: #66724b;
+      --azulejo: #2f6f8f;
+      --gold: #bd8b2c;
+      --plum: #6d4c5f;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(31, 41, 51, .1);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      isolation: isolate;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(11, 24, 32, .18) 0%, rgba(11, 24, 32, .54) 58%, rgba(11, 24, 32, .82) 100%),
+        url("https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=2200&q=80") center/cover;
+      z-index: -2;
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 22vh;
+      background: linear-gradient(180deg, rgba(251, 250, 247, 0), var(--paper));
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 80px 0 116px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 26px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 8vw, 104px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(18px, 2vw, 24px);
+      color: rgba(255, 255, 255, .9);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 44px;
+      max-width: 920px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 18px;
+      background: rgba(9, 21, 28, .2);
+      min-height: 94px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      color: rgba(255, 255, 255, .78);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 250, 247, .9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      width: min(1180px, calc(100% - 24px));
+      margin: 0 auto;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .nav-links a,
+    .filter-btn,
+    .print-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 14px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .filter-btn.primary {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .nav-links a:hover,
+    .filter-btn:hover,
+    .filter-btn.active:not(.primary),
+    .print-btn:hover {
+      border-color: var(--line);
+      background: var(--white);
+    }
+
+    section {
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .55fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4.8vw, 60px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .city-card {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      color: var(--white);
+      isolation: isolate;
+    }
+
+    .city-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.72));
+      z-index: -1;
+    }
+
+    .city-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .city-card .content {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 22px;
+    }
+
+    .city-card small {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .city-card h3 {
+      margin: 0 0 8px;
+      font-size: 27px;
+      line-height: 1.05;
+    }
+
+    .city-card p {
+      margin: 0;
+      color: rgba(255,255,255,.84);
+      font-size: 14px;
+    }
+
+    .transport {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .transport-item,
+    .note,
+    .source-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(31, 41, 51, .06);
+    }
+
+    .transport-item .mode {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--azulejo);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .transport-item h3,
+    .source-card h3 {
+      margin: 0 0 7px;
+      font-size: 18px;
+    }
+
+    .transport-item p,
+    .source-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .worth-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .worth-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(31, 41, 51, .05);
+    }
+
+    .worth-card b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .worth-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .day-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 0;
+      align-items: stretch;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 16px rgba(31, 41, 51, .04);
+      overflow: hidden;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .day:hover {
+      border-color: rgba(47, 111, 143, .45);
+      box-shadow: 0 10px 24px rgba(31, 41, 51, .07);
+    }
+
+    .date {
+      padding: 14px;
+      color: var(--white);
+      background: var(--azulejo);
+      display: grid;
+      align-content: space-between;
+      min-height: 148px;
+      position: relative;
+    }
+
+    .date[data-city="巴塞罗那"] { background: var(--terracotta); }
+    .date[data-city="格拉纳达"] { background: var(--plum); }
+    .date[data-city="塞维利亚"] { background: var(--gold); color: #211b12; }
+    .date[data-city="里斯本"] { background: var(--azulejo); }
+    .date[data-city="波尔图"] { background: var(--olive); }
+
+    .date strong {
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    .date span {
+      display: block;
+      margin-top: 8px;
+      font-size: 13px;
+      opacity: .82;
+    }
+
+    .date em {
+      display: inline-block;
+      align-self: end;
+      margin-top: 18px;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .day-body {
+      padding: 12px;
+      display: block;
+    }
+
+    .day h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .day-modules {
+      display: grid;
+      grid-template-columns: minmax(440px, 2.2fr) minmax(170px, .75fr) minmax(260px, 1.2fr);
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .day-module {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8fafc;
+      padding: 10px 11px;
+      min-width: 0;
+    }
+
+    .day-module strong {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 7px;
+      font-size: 11px;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .day-module p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .day-module.plan {
+      grid-column: auto;
+    }
+
+    .day-module.plan-combo {
+      background: #f7fbfd;
+      border-color: #c9dce7;
+    }
+
+    .combo-plan {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .combo-time {
+      border-right: 1px solid var(--line);
+      padding-right: 10px;
+    }
+
+    .combo-route {
+      min-width: 0;
+    }
+
+    .day-module:last-child {
+      grid-column: auto;
+      background: #fffaf2;
+      border-color: #ead6ad;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      font-size: 13px;
+    }
+
+    .time {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tagline {
+      align-self: start;
+      border-left: 3px solid var(--line);
+      padding-left: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .day-side {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .focus-box,
+    .todo-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfaf7;
+      padding: 13px;
+    }
+
+    .focus-box strong,
+    .todo-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .focus-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .todo-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .todo-groups {
+      display: grid;
+      gap: 12px;
+    }
+
+    .todo-group b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .todo-group p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .todo-item {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .todo-item input {
+      width: 16px;
+      height: 16px;
+      margin: 2px 0 0;
+      accent-color: var(--azulejo);
+    }
+
+    .todo-item span {
+      transition: color .15s ease, text-decoration-color .15s ease;
+    }
+
+    .todo-item input:checked + span {
+      color: #98a2b3;
+      text-decoration: line-through;
+      text-decoration-color: #98a2b3;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .note h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .note ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .note li + li { margin-top: 8px; }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .source-card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--azulejo);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer {
+      padding: 40px 0 54px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-stats,
+      .route-grid,
+      .transport,
+      .worth-grid,
+      .booking-grid,
+      .source-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      .section-head { grid-template-columns: 1fr; }
+
+      .day { grid-template-columns: 124px minmax(0, 1fr); }
+      .day-modules {
+        grid-template-columns: minmax(420px, 2.2fr) minmax(160px, .75fr) minmax(250px, 1.2fr);
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .day-body { padding-right: 20px; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: 86vh; }
+      .hero-inner { width: min(100% - 28px, 1180px); padding-bottom: 84px; }
+      .hero-stats,
+      .route-grid,
+      .transport,
+      .worth-grid,
+      .booking-grid,
+      .source-grid { grid-template-columns: 1fr; }
+      .nav-inner { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0 8px; }
+      .wrap { width: min(100% - 28px, 1180px); }
+      section { padding: 52px 0; }
+      .day { grid-template-columns: 1fr; }
+      .date { min-height: 116px; }
+      .day-body { padding: 12px; }
+      .day-modules {
+        grid-template-columns: 420px 170px 250px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .timeline li { grid-template-columns: 62px minmax(0, 1fr); }
+      .city-card { min-height: 260px; }
+    }
+
+    @media print {
+      .filters { display: none; }
+      body { background: #fff; }
+      section { padding: 18px 0; break-inside: avoid; }
+      .wrap { width: 100%; }
+      .day, .day-module, .transport-item, .note, .source-card { box-shadow: none; }
+      .day { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+<section id="days">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>每日行程</h2>
+      <p class="lead">每一天都横向展示完整信息：左侧彩色块是日期和所在城市，右侧合并显示时间与景点计划，再接住宿和待办。</p>
+        </div>
+
+        <div class="filters" aria-label="城市筛选">
+          <button class="filter-btn active" type="button" data-filter="all">全部</button>
+          <button class="filter-btn" type="button" data-filter="巴塞罗那">巴塞罗那</button>
+          <button class="filter-btn" type="button" data-filter="格拉纳达">格拉纳达</button>
+          <button class="filter-btn" type="button" data-filter="塞维利亚">塞维利亚</button>
+          <button class="filter-btn" type="button" data-filter="里斯本">里斯本</button>
+          <button class="filter-btn" type="button" data-filter="波尔图">波尔图</button>
+        </div>
+
+        <div class="day-list">
+          <article class="day" data-city="巴塞罗那">
+            <div class="date" data-city="巴塞罗那"><strong>09.26</strong><span>周六 · 抵达</span><em>巴塞罗那</em></div>
+            <div class="day-body">
+              <h3>抵达后只做轻量散步，先熟悉市中心</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>13:25 抵达 BCN T1</li><li>16:30 左右入住</li><li>18:00 轻量散步</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">抵达</span><span>入境、取行李、进城，不安排付费景点。</span></li><li><span class="time">傍晚</span><span>加泰罗尼亚广场和 Passeig de Gracia 外观初看。</span></li><li><span class="time">晚上</span><span>酒店附近晚餐，早点休息。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞罗那。建议 Eixample、Passeig de Gracia、哥特区北侧。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0926-airport"><span>确认 BCN 机场到酒店路线</span></label></div></div><div class="todo-group"><b>门票待定</b><p>无，当天不安排门票。</p></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="巴塞罗那">
+            <div class="date" data-city="巴塞罗那"><strong>09.27</strong><span>周日 · 圣家堂</span><em>巴塞罗那</em></div>
+            <div class="day-body">
+              <h3>圣家堂必去，下午接哥特区和主教堂</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:00 圣家堂</li><li>14:00 哥特区</li><li>16:30 音乐宫可选</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>圣家堂入内，诞生立面、受难立面、主殿；塔楼按体力决定。</span></li><li><span class="time">下午</span><span>巴塞罗那主教堂、国王广场、犹太区小巷。</span></li><li><span class="time">傍晚</span><span>加泰罗尼亚音乐宫导览或只看外观。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞罗那，同前一晚。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><p>无城际交通。</p></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0927-sagrada"><span>订圣家堂 09.27 上午票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0927-palau"><span>决定音乐宫是否入内导览</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="巴塞罗那">
+            <div class="date" data-city="巴塞罗那"><strong>09.28</strong><span>周一 · 高迪</span><em>巴塞罗那</em></div>
+            <div class="day-body">
+              <h3>巴特罗之家/米拉之家二选一，再去奎尔公园</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:30 高迪公寓</li><li>16:00 奎尔公园</li><li>20:00 晚餐</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>优先巴特罗之家入内；米拉之家看外观。若更喜欢建筑结构，可反过来。</span></li><li><span class="time">下午</span><span>奎尔公园核心区，蜥蜴台阶、百柱厅、观景平台。</span></li><li><span class="time">晚上</span><span>Gracia 或 Eixample 晚餐。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞罗那，同前一晚。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><p>无城际交通。</p></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0928-gaudi"><span>订巴特罗之家或米拉之家其中一个</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0928-park"><span>订奎尔公园核心区下午票</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="巴塞罗那">
+            <div class="date" data-city="巴塞罗那"><strong>09.29</strong><span>周二 · Born/海边</span><em>巴塞罗那</em></div>
+            <div class="day-body">
+              <h3>毕加索或音乐宫二选一，海边轻松收尾</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:30 博物馆/导览</li><li>15:00 兰布拉和市场</li><li>17:00 海边</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>毕加索博物馆入内；若兴趣一般，改成音乐宫导览。</span></li><li><span class="time">中午</span><span>圣玛利亚海洋教堂外观/短入内，Born 区午餐。</span></li><li><span class="time">下午</span><span>兰布拉大道和波盖利亚市场顺路看，之后巴塞罗内塔海滩散步。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞罗那，最后一晚；晚上整理第二天飞格拉纳达的行李。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-flight"><span>确认 09.30 BCN → GRX 航班和行李额</span></label></div></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-picasso"><span>决定毕加索博物馆或音乐宫导览</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="格拉纳达">
+            <div class="date" data-city="格拉纳达"><strong>09.30</strong><span>周三 · 转场</span><em>巴塞罗那 → 格拉纳达</em></div>
+            <div class="day-body">
+              <h3>飞到格拉纳达后，只走阿尔拜辛和日落线</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>上午/中午 飞格拉纳达</li><li>15:30 入住</li><li>17:30 阿尔拜辛</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">转场</span><span>BCN → GRX，优先中午前后抵达。</span></li><li><span class="time">傍晚</span><span>Plaza Nueva、Carrera del Darro、Paseo de los Tristes、阿尔拜辛白墙巷。</span></li><li><span class="time">日落</span><span>圣尼古拉斯观景台看阿尔罕布拉宫。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>格拉纳达。建议 Catedral、Plaza Nueva、Gran Via 附近。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0930-flight"><span>订 09.30 BCN → GRX 机票</span></label></div></div><div class="todo-group"><b>门票待定</b><p>无，当天不进阿尔罕布拉宫。</p></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="格拉纳达">
+            <div class="date" data-city="格拉纳达"><strong>10.01</strong><span>周四 · 阿尔罕布拉</span><em>格拉纳达</em></div>
+            <div class="day-body">
+              <h3>阿尔罕布拉宫完整日：按预约时段走</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>08:30 入园</li><li>上午 纳斯瑞德宫</li><li>15:30 市中心</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>阿尔罕布拉宫园区、纳斯瑞德宫、查理五世宫、Alcazaba。</span></li><li><span class="time">中午</span><span>Generalife 花园和夏宫。</span></li><li><span class="time">下午</span><span>格拉纳达大教堂或皇家礼拜堂二选一。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>格拉纳达，同前一晚。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><p>无城际交通。</p></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1001-alhambra"><span>订阿尔罕布拉宫 General 票，优先上午纳斯瑞德宫</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1001-id"><span>确认票面姓名和护照/证件一致</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="塞维利亚">
+            <div class="date" data-city="塞维利亚"><strong>10.02</strong><span>周五 · 转场</span><em>格拉纳达 → 塞维利亚</em></div>
+            <div class="day-body">
+              <h3>火车去塞维利亚，晚上只逛河对岸</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:30 格拉纳达散步</li><li>中午 火车</li><li>18:30 特里亚纳</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>格拉纳达大教堂周边、Alcaiceria 小商品街。</span></li><li><span class="time">转场</span><span>Renfe 到 Sevilla Santa Justa。</span></li><li><span class="time">傍晚</span><span>Puente de Triana、陶瓷店、河岸夕阳、tapas。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚。建议 Santa Cruz、Centro、Arenal。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1002-renfe"><span>订 10.02 Granada → Sevilla 火车</span></label></div></div><div class="todo-group"><b>门票待定</b><p>无，当天不安排重景点门票。</p></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="塞维利亚">
+            <div class="date" data-city="塞维利亚"><strong>10.03</strong><span>周六 · 王宫/大教堂</span><em>塞维利亚</em></div>
+            <div class="day-body">
+              <h3>塞维利亚核心古迹：王宫和大教堂分开看</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:30 王宫</li><li>16:00 大教堂</li><li>20:30 弗拉门戈</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>塞维利亚王宫 Real Alcazar 入内，宫殿房间和花园。</span></li><li><span class="time">下午</span><span>Santa Cruz、塞维利亚大教堂、Giralda 塔。</span></li><li><span class="time">晚上</span><span>弗拉门戈演出。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚，同前一晚。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><p>无城际交通。</p></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1003-alcazar"><span>订塞维利亚王宫 10.03 上午票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1003-flamenco"><span>订 10.03 晚上弗拉门戈</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="塞维利亚">
+            <div class="date" data-city="塞维利亚"><strong>10.04</strong><span>周日 · 广场/河岸</span><em>塞维利亚</em></div>
+            <div class="day-body">
+              <h3>西班牙广场和河岸，把户外点放早晚</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:00 西班牙广场</li><li>15:30 河岸</li><li>18:30 都市阳伞</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>西班牙广场、玛利亚路易莎公园。</span></li><li><span class="time">下午</span><span>Arenal 河岸、斗牛场外观、黄金塔。</span></li><li><span class="time">傍晚</span><span>Metropol Parasol 都市阳伞看黄昏。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚，最后一晚；整理次日飞里斯本的行李。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1004-flight"><span>确认 10.05 SVQ → LIS 航班和行李额</span></label></div></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1004-parasol"><span>看是否需要订都市阳伞黄昏票</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="里斯本">
+            <div class="date" data-city="里斯本"><strong>10.05</strong><span>周一 · 转场</span><em>塞维利亚 → 里斯本</em></div>
+            <div class="day-body">
+              <h3>飞到里斯本后，先走下城和阿尔法玛</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>上午 飞里斯本</li><li>15:00 入住</li><li>17:00 下城</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">转场</span><span>SVQ → LIS，优先白天抵达。</span></li><li><span class="time">傍晚</span><span>商业广场、奥古斯塔街、Rossio、圣胡斯塔升降机外观。</span></li><li><span class="time">晚上</span><span>阿尔法玛、Santa Luzia 观景台，fado 可选。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>里斯本。建议 Baixa、Chiado、Avenida da Liberdade。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1005-flight"><span>订 10.05 SVQ → LIS 机票</span></label></div></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1005-fado"><span>如果想听 fado，订今晚或 10.06 晚上</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="里斯本">
+            <div class="date" data-city="里斯本"><strong>10.06</strong><span>周二 · 贝伦</span><em>里斯本</em></div>
+            <div class="day-body">
+              <h3>贝伦半天，下午回市中心山丘</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>09:30 贝伦</li><li>16:00 Chiado</li><li>19:30 观景台/晚餐</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>热罗尼莫斯修道院、贝伦蛋挞。</span></li><li><span class="time">中午</span><span>发现者纪念碑、贝伦塔外观、河边散步。</span></li><li><span class="time">下午</span><span>Chiado、Bairro Alto、伯特兰书店和咖啡。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>里斯本，同前一晚。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><p>无城际交通。</p></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1006-jeronimos"><span>查热罗尼莫斯修道院开放和购票方式</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="波尔图">
+            <div class="date" data-city="波尔图"><strong>10.07</strong><span>周三 · 当天往返</span><em>里斯本 ⇄ 波尔图</em></div>
+            <div class="day-body">
+              <h3>波尔图当天往返，只抓老城和河岸</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>07:00 去程火车</li><li>10:30 波尔图老城</li><li>19:00 回程火车</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>São Bento 车站瓷砖、Aliados 大道、Clerigos 塔外观。</span></li><li><span class="time">中午</span><span>Ribeira 河岸午餐，路易一世大桥步行到 Gaia。</span></li><li><span class="time">下午</span><span>Gaia 河岸酒窖参观/品酒或咖啡休息。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>里斯本。当天往返波尔图，不换酒店。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1007-cp"><span>订 10.07 里斯本 ⇄ 波尔图早去晚回火车</span></label></div></div><div class="todo-group"><b>门票待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1007-cellar"><span>如想品酒，订 Gaia 酒窖参观</span></label></div></div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="day" data-city="里斯本">
+            <div class="date" data-city="里斯本"><strong>10.08</strong><span>周四 · 返程</span><em>里斯本 → 迪拜</em></div>
+            <div class="day-body">
+              <h3>返程日只做近距离事项</h3>
+              <div class="day-modules">
+                <div class="day-module plan-combo"><strong>时间与景点计划</strong><div class="combo-plan"><div class="combo-time"><ul class="mini-list"><li>08:30 早餐/补买</li><li>10:30 去机场</li><li>14:20 EK192 离境</li></ul></div><div class="combo-route"><ul class="timeline"><li><span class="time">上午</span><span>酒店附近早餐、伴手礼，不去远景点。</span></li><li><span class="time">机场</span><span>前往 LIS T1，预留退税、安检和排队时间。</span></li><li><span class="time">返程</span><span>14:20 EK192 里斯本 → 迪拜；10.09 03:15 EK382 迪拜 → 香港。</span></li></ul></div></div></div>
+                <div class="day-module"><strong>当天住宿</strong><p>飞机上过夜。10.09 15:25 抵达香港。</p></div>
+                <div class="day-module"><strong>待办</strong><div class="todo-groups"><div class="todo-group"><b>交通待定</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1008-airport"><span>确认酒店到 LIS T1 路线和出发时间</span></label></div></div><div class="todo-group"><b>门票待定</b><p>无。</p></div></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+      </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".filter-btn[data-filter]");
+    const days = document.querySelectorAll(".day");
+    const taskInputs = document.querySelectorAll("[data-task]");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        buttons.forEach((item) => item.classList.toggle("active", item === button));
+        days.forEach((day) => {
+          const visible = filter === "all" || day.dataset.city === filter;
+          day.style.display = visible ? "grid" : "none";
+        });
+      });
+    });
+
+    taskInputs.forEach((input) => {
+      const key = `iberia-trip-${input.dataset.task}`;
+      input.checked = localStorage.getItem(key) === "done";
+      input.addEventListener("change", () => {
+        if (input.checked) {
+          localStorage.setItem(key, "done");
+        } else {
+          localStorage.removeItem(key);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
