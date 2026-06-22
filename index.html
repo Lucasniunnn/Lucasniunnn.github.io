@@ -9,7 +9,7 @@
       --ink: #22211f;
       --muted: #74706a;
       --line: #ded7cd;
-      --paper: #f4f1eb;
+      --paper: #f7f4ef;
       --soft: #eee8dd;
       --terracotta: #9f5539;
       --olive: #596345;
@@ -17,7 +17,7 @@
       --gold: #af7f25;
       --plum: #644a5c;
       --white: #ffffff;
-      --shadow: 0 22px 54px rgba(61, 48, 37, .12);
+      --shadow: 0 10px 28px rgba(61, 48, 37, .07);
       --radius: 8px;
     }
 
@@ -28,10 +28,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .18) 260px),
-        linear-gradient(90deg, rgba(47, 103, 126, .035) 0 1px, transparent 1px 92px),
-        var(--paper);
+      background: var(--paper);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       line-height: 1.55;
     }
@@ -335,13 +332,7 @@
       gap: 8px;
       flex-wrap: wrap;
       margin-bottom: 18px;
-      padding: 8px;
-      width: fit-content;
-      max-width: 100%;
-      border: 1px solid rgba(34, 33, 31, .1);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, .64);
-      box-shadow: 0 12px 32px rgba(61, 48, 37, .06);
+      padding: 0;
     }
 
     .worth-grid {
@@ -381,18 +372,17 @@
       grid-template-columns: 148px minmax(0, 1fr);
       gap: 0;
       align-items: stretch;
-      background: rgba(255, 255, 255, .9);
+      background: var(--white);
       border: 1px solid rgba(34, 33, 31, .12);
       border-radius: var(--radius);
-      box-shadow: 0 16px 44px rgba(61, 48, 37, .08);
+      box-shadow: var(--shadow);
       overflow: hidden;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      transition: border-color .18s ease, box-shadow .18s ease;
     }
 
     .day:hover {
-      transform: translateY(-1px);
-      border-color: rgba(47, 103, 126, .3);
-      box-shadow: 0 22px 58px rgba(61, 48, 37, .12);
+      border-color: rgba(34, 33, 31, .18);
+      box-shadow: 0 12px 34px rgba(61, 48, 37, .09);
     }
 
     .date {
@@ -444,7 +434,7 @@
     .day-body {
       padding: 12px;
       display: block;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(250, 248, 244, .86));
+      background: #fbfaf7;
     }
 
     .day-modules {
@@ -457,10 +447,9 @@
     .day-module {
       border: 1px solid rgba(34, 33, 31, .1);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, .78);
+      background: var(--white);
       padding: 12px 12px;
       min-width: 0;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .72);
     }
 
     .day-module strong {
@@ -481,17 +470,17 @@
     }
 
     .day-module.plan-combo {
-      background: rgba(247, 251, 253, .84);
+      background: var(--white);
       border-color: rgba(47, 103, 126, .22);
     }
 
     .other-module {
-      background: rgba(255, 250, 242, .82);
+      background: var(--white);
       border-color: rgba(175, 127, 37, .26);
     }
 
     .map-module {
-      background: rgba(248, 251, 247, .84);
+      background: var(--white);
       border-color: rgba(89, 99, 69, .24);
     }
 
@@ -501,10 +490,7 @@
       place-items: center;
       border: 1px dashed rgba(89, 99, 69, .38);
       border-radius: 6px;
-      background:
-        linear-gradient(135deg, rgba(89, 99, 69, .08) 0 25%, transparent 25% 50%, rgba(89, 99, 69, .08) 50% 75%, transparent 75%),
-        rgba(255, 255, 255, .62);
-      background-size: 14px 14px;
+      background: #fbfaf7;
       color: var(--olive);
       font-size: 12px;
       font-weight: 700;
@@ -530,6 +516,7 @@
       min-height: 30px;
       padding: 7px 8px;
       border: 1px solid var(--line);
+      border-left-width: 3px;
       border-radius: 6px;
       counter-increment: route-step;
     }
@@ -548,7 +535,7 @@
     }
 
     .route-list li::after {
-      padding: 2px 6px;
+      padding: 0;
       border-radius: 999px;
       font-size: 10px;
       font-weight: 800;
@@ -558,8 +545,9 @@
     }
 
     .route-spot {
-      background: rgba(243, 248, 251, .82);
-      border-color: rgba(47, 103, 126, .2);
+      background: var(--white);
+      border-color: rgba(47, 103, 126, .18);
+      border-left-color: var(--azulejo);
     }
 
     .route-spot::before {
@@ -569,13 +557,13 @@
 
     .route-spot::after {
       content: "景点";
-      background: rgba(220, 236, 243, .86);
       color: #27566f;
     }
 
     .route-meal {
-      background: rgba(255, 248, 234, .86);
-      border-color: rgba(175, 127, 37, .24);
+      background: var(--white);
+      border-color: rgba(175, 127, 37, .2);
+      border-left-color: var(--gold);
     }
 
     .route-meal::before {
@@ -585,13 +573,13 @@
 
     .route-meal::after {
       content: "餐食";
-      background: rgba(245, 227, 186, .9);
       color: #76541a;
     }
 
     .route-activity {
-      background: rgba(247, 246, 242, .86);
-      border-color: rgba(89, 99, 69, .2);
+      background: var(--white);
+      border-color: rgba(89, 99, 69, .18);
+      border-left-color: var(--olive);
     }
 
     .route-activity::before {
@@ -601,7 +589,6 @@
 
     .route-activity::after {
       content: "活动";
-      background: rgba(229, 234, 220, .92);
       color: #4d5a38;
     }
 
