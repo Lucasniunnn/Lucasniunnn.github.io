@@ -484,8 +484,7 @@
     }
 
     .route-list {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
       gap: 7px;
       margin: 0;
       padding: 0;
@@ -496,16 +495,23 @@
     }
 
     .route-list li {
-      display: inline-flex;
-      align-items: center;
-      min-width: 0;
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 8px;
       counter-increment: route-step;
     }
 
-    .route-list li:not(:last-child)::after {
-      content: "-";
+    .route-list li::before {
+      content: counter(route-step);
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft);
       color: var(--muted);
-      padding-left: 7px;
+      font-size: 11px;
+      font-weight: 800;
     }
 
     .day-side {
@@ -708,28 +714,6 @@
         margin-bottom: 6px;
         font-size: 11px;
       }
-      .route-list {
-        display: grid;
-        gap: 7px;
-      }
-      .route-list li {
-        display: grid;
-        grid-template-columns: 18px minmax(0, 1fr);
-        gap: 8px;
-      }
-      .route-list li::before {
-        content: counter(route-step);
-        width: 18px;
-        height: 18px;
-        display: inline-grid;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--soft);
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 800;
-      }
-      .route-list li:not(:last-child)::after { content: none; }
       .todo-groups { gap: 9px; }
     }
 
