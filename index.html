@@ -14,12 +14,12 @@
       --line-soft: #f2f2f2;
       --paper: #fafafa;
       --soft: #f2f2f2;
-      --city-barcelona-start: #075fba;
-      --city-barcelona-end: #089a9a;
-      --city-granada-start: #5c2498;
-      --city-granada-end: #a9145c;
-      --city-sevilla-start: #b83232;
-      --city-sevilla-end: #b67916;
+      --city-barcelona-start: #007cf0;
+      --city-barcelona-end: #00dfd8;
+      --city-granada-start: #7928ca;
+      --city-granada-end: #ff0080;
+      --city-sevilla-start: #ff4d4d;
+      --city-sevilla-end: #f9cb28;
       --city-lisbon-start: #171717;
       --city-lisbon-end: #4d4d4d;
       --city-porto-start: #0759b8;
@@ -182,8 +182,8 @@
     .filter-btn,
     .print-btn {
       border: 1px solid transparent;
-      background: transparent;
-      color: var(--body);
+      background: var(--white);
+      color: var(--ink);
       text-decoration: none;
       padding: 7px 12px;
       border-radius: 64px;
@@ -192,6 +192,10 @@
       line-height: 20px;
       white-space: nowrap;
       cursor: pointer;
+    }
+
+    .filter-btn {
+      border-color: var(--line);
     }
 
     .filter-btn.primary {
@@ -212,6 +216,11 @@
       border-color: var(--ink);
       background: var(--ink);
       color: var(--white);
+    }
+
+    .filter-btn:focus-visible {
+      outline: 2px solid var(--link);
+      outline-offset: 2px;
     }
 
     section {
@@ -406,20 +415,29 @@
 
     .date {
       padding: 16px;
-      color: var(--white);
-      background: var(--azulejo);
+      color: var(--ink);
+      background: var(--white);
       display: grid;
       align-content: start;
       gap: 8px;
       min-height: 144px;
       position: relative;
+      border-right: 1px solid var(--line);
     }
 
-    .date[data-city="巴塞罗那"] { background: linear-gradient(135deg, rgba(0, 0, 0, .16), rgba(0, 0, 0, .16)), linear-gradient(135deg, var(--city-barcelona-start), var(--city-barcelona-end)); }
-    .date[data-city="格拉纳达"] { background: linear-gradient(135deg, rgba(0, 0, 0, .16), rgba(0, 0, 0, .16)), linear-gradient(135deg, var(--city-granada-start), var(--city-granada-end)); }
-    .date[data-city="塞维利亚"] { background: linear-gradient(135deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)), linear-gradient(135deg, var(--city-sevilla-start), var(--city-sevilla-end)); color: var(--white); }
-    .date[data-city="里斯本"] { background: linear-gradient(135deg, var(--city-lisbon-start), var(--city-lisbon-end)); }
-    .date[data-city="波尔图"] { background: linear-gradient(135deg, rgba(0, 0, 0, .14), rgba(0, 0, 0, .14)), linear-gradient(135deg, var(--city-porto-start), var(--city-porto-end)); }
+    .date::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--ink);
+    }
+
+    .date[data-city="巴塞罗那"]::before { background: linear-gradient(90deg, var(--city-barcelona-start), var(--city-barcelona-end)); }
+    .date[data-city="格拉纳达"]::before { background: linear-gradient(90deg, var(--city-granada-start), var(--city-granada-end)); }
+    .date[data-city="塞维利亚"]::before { background: linear-gradient(90deg, var(--city-sevilla-start), var(--city-sevilla-end)); }
+    .date[data-city="里斯本"]::before { background: linear-gradient(90deg, var(--city-lisbon-start), var(--city-lisbon-end)); }
+    .date[data-city="波尔图"]::before { background: linear-gradient(90deg, var(--city-porto-start), var(--city-porto-end)); }
 
     .date strong {
       font-family: Geist, Arial, sans-serif;
@@ -431,7 +449,7 @@
 
     .date span {
       display: block;
-      color: rgba(255, 255, 255, .78);
+      color: var(--muted);
       font-size: 12px;
       line-height: 16px;
       opacity: 1;
@@ -845,12 +863,12 @@
         </div>
 
         <div class="filters" aria-label="城市筛选">
-          <button class="filter-btn active" type="button" data-filter="all">全部</button>
-          <button class="filter-btn" type="button" data-filter="巴塞罗那">巴塞罗那</button>
-          <button class="filter-btn" type="button" data-filter="格拉纳达">格拉纳达</button>
-          <button class="filter-btn" type="button" data-filter="塞维利亚">塞维利亚</button>
-          <button class="filter-btn" type="button" data-filter="里斯本">里斯本</button>
-          <button class="filter-btn" type="button" data-filter="波尔图">波尔图</button>
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-btn" type="button" data-filter="巴塞罗那" aria-pressed="false">巴塞罗那</button>
+          <button class="filter-btn" type="button" data-filter="格拉纳达" aria-pressed="false">格拉纳达</button>
+          <button class="filter-btn" type="button" data-filter="塞维利亚" aria-pressed="false">塞维利亚</button>
+          <button class="filter-btn" type="button" data-filter="里斯本" aria-pressed="false">里斯本</button>
+          <button class="filter-btn" type="button" data-filter="波尔图" aria-pressed="false">波尔图</button>
         </div>
 
         <div class="day-list">
@@ -1036,10 +1054,14 @@
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         const filter = button.dataset.filter;
-        buttons.forEach((item) => item.classList.toggle("active", item === button));
+        buttons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
         days.forEach((day) => {
           const visible = filter === "all" || day.dataset.city === filter;
-          day.style.display = visible ? "grid" : "none";
+          day.hidden = !visible;
         });
       });
     });
