@@ -408,6 +408,10 @@
       transition: border-color .18s ease, box-shadow .18s ease;
     }
 
+    .day[hidden] {
+      display: none;
+    }
+
     .day:hover {
       border-color: #d9d9d9;
       box-shadow: 0 10px 28px rgba(0, 0, 0, .055);
@@ -429,7 +433,7 @@
       content: "";
       position: absolute;
       inset: 0 0 auto;
-      height: 4px;
+      height: 10px;
       background: var(--ink);
     }
 
