@@ -14,11 +14,16 @@
       --line-soft: #f2f2f2;
       --paper: #fafafa;
       --soft: #f2f2f2;
-      --terracotta: #8f4e3a;
-      --olive: #59614b;
-      --azulejo: #2f6379;
-      --gold: #9f752a;
-      --plum: #624a5c;
+      --city-barcelona-start: #007cf0;
+      --city-barcelona-end: #00dfd8;
+      --city-granada-start: #7928ca;
+      --city-granada-end: #ff0080;
+      --city-sevilla-start: #ff4d4d;
+      --city-sevilla-end: #f9cb28;
+      --city-lisbon-start: #171717;
+      --city-lisbon-end: #4d4d4d;
+      --city-porto-start: #0070f3;
+      --city-porto-end: #0761d1;
       --link: #0070f3;
       --warning: #f5a623;
       --white: #ffffff;
@@ -197,12 +202,12 @@
 
     .nav-links a:hover,
     .filter-btn:hover,
-    .filter-btn.active:not(.primary),
     .print-btn:hover {
       border-color: var(--line);
       background: var(--white);
     }
 
+    .filter-btn.active:hover,
     .filter-btn.active {
       border-color: var(--ink);
       background: var(--ink);
@@ -410,11 +415,11 @@
       position: relative;
     }
 
-    .date[data-city="巴塞罗那"] { background: var(--terracotta); }
-    .date[data-city="格拉纳达"] { background: var(--plum); }
-    .date[data-city="塞维利亚"] { background: var(--gold); color: var(--white); }
-    .date[data-city="里斯本"] { background: var(--azulejo); }
-    .date[data-city="波尔图"] { background: var(--olive); }
+    .date[data-city="巴塞罗那"] { background: linear-gradient(135deg, var(--city-barcelona-start), var(--city-barcelona-end)); }
+    .date[data-city="格拉纳达"] { background: linear-gradient(135deg, var(--city-granada-start), var(--city-granada-end)); }
+    .date[data-city="塞维利亚"] { background: linear-gradient(135deg, var(--city-sevilla-start), var(--city-sevilla-end)); color: var(--white); }
+    .date[data-city="里斯本"] { background: linear-gradient(135deg, var(--city-lisbon-start), var(--city-lisbon-end)); }
+    .date[data-city="波尔图"] { background: linear-gradient(135deg, var(--city-porto-start), var(--city-porto-end)); }
 
     .date strong {
       font-family: Geist, Arial, sans-serif;
