@@ -287,6 +287,116 @@
       max-width: 620px;
     }
 
+    .travel-theme {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .68fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .theme-hero,
+    .theme-shot {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .62);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, .38);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(30px) saturate(175%);
+      isolation: isolate;
+    }
+
+    .theme-hero {
+      min-height: 300px;
+    }
+
+    .theme-hero img,
+    .theme-shot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .theme-hero::before,
+    .theme-shot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(12, 16, 24, .56), rgba(12, 16, 24, .08) 64%),
+        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .22));
+    }
+
+    .theme-copy {
+      width: min(430px, 72%);
+      min-height: 300px;
+      display: grid;
+      align-content: end;
+      gap: 10px;
+      padding: 26px;
+      color: var(--white);
+    }
+
+    .theme-kicker {
+      width: max-content;
+      max-width: 100%;
+      padding: 7px 11px;
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(18px) saturate(170%);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .theme-copy h3 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 38px;
+      letter-spacing: 0;
+    }
+
+    .theme-copy p {
+      margin: 0;
+      color: rgba(255, 255, 255, .86);
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    .theme-shots {
+      display: grid;
+      gap: 14px;
+    }
+
+    .theme-shot {
+      min-height: 143px;
+      margin: 0;
+    }
+
+    .theme-shot::before {
+      background: linear-gradient(180deg, rgba(12, 16, 24, .08), rgba(12, 16, 24, .52));
+    }
+
+    .theme-shot figcaption {
+      position: absolute;
+      inset: auto 12px 12px;
+      width: max-content;
+      max-width: calc(100% - 24px);
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, .46);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .18);
+      color: var(--white);
+      backdrop-filter: blur(16px) saturate(170%);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+    }
+
     .route-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -982,6 +1092,14 @@
 
       .section-head { grid-template-columns: 1fr; }
 
+      .travel-theme {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-shots {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .day { grid-template-columns: 124px minmax(0, 1fr); }
       .day-modules {
         grid-template-columns: minmax(0, 1fr) minmax(220px, .9fr) minmax(128px, .5fr);
@@ -1009,6 +1127,42 @@
       .lead {
         font-size: 13px;
         line-height: 1.45;
+      }
+      .travel-theme {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .theme-hero,
+      .theme-shot {
+        border-radius: 26px;
+      }
+      .theme-hero {
+        min-height: 330px;
+      }
+      .theme-hero::before {
+        background:
+          linear-gradient(180deg, rgba(12, 16, 24, .16), rgba(12, 16, 24, .62)),
+          linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .22));
+      }
+      .theme-copy {
+        width: 100%;
+        min-height: 330px;
+        padding: 18px;
+      }
+      .theme-copy h3 {
+        font-size: 27px;
+        line-height: 31px;
+      }
+      .theme-copy p {
+        font-size: 13px;
+        line-height: 19px;
+      }
+      .theme-shots {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .theme-shot {
+        min-height: 190px;
       }
       .filters {
         flex-wrap: nowrap;
@@ -1084,6 +1238,27 @@
         <div class="section-head">
           <h2>每日行程</h2>
       <p class="lead">每一天分成固定四段：日期城市主题、路线顺序、住宿和其他待办，方便出发前逐项确认。</p>
+        </div>
+
+        <div class="travel-theme" aria-label="噜噜和噜妹一起旅行主题">
+          <div class="theme-hero">
+            <img src="assets/lulu-lumei-barcelona.png" alt="噜噜和噜妹在巴塞罗那开启旅行">
+            <div class="theme-copy">
+              <span class="theme-kicker">噜噜和噜妹一起旅行</span>
+              <h3>伊比利亚阳光出发</h3>
+              <p>从巴塞罗那到格拉纳达、塞维利亚和里斯本，把每天的路线都变成一张软乎乎的旅行收藏。</p>
+            </div>
+          </div>
+          <div class="theme-shots">
+            <figure class="theme-shot">
+              <img src="assets/lulu-lumei-airport.png" alt="噜噜和噜妹准备从机场出发">
+              <figcaption>机场出发</figcaption>
+            </figure>
+            <figure class="theme-shot">
+              <img src="assets/lulu-lumei-sitges.png" alt="噜噜和噜妹在 Sitges 海边看日落">
+              <figcaption>Sitges 日落</figcaption>
+            </figure>
+          </div>
         </div>
 
         <div class="filters" aria-label="城市筛选">
