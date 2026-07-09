@@ -1859,6 +1859,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes titleGradientFlow {
+      0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 16px 34px rgba(10, 132, 255, .18)); }
+      50% { background-position: 100% 50%; filter: drop-shadow(0 18px 42px rgba(255, 45, 132, .2)); }
+    }
+
     @keyframes cardIn {
       from { opacity: 0; transform: translateY(22px) scale(.985); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -1932,7 +1937,7 @@
         max-width: none;
         min-height: auto;
         padding: 0;
-        gap: 12px;
+        gap: 14px;
       }
 
       .hero-label {
@@ -1947,17 +1952,22 @@
       }
 
       .adventure-copy h2 {
-        max-width: 10ch;
-        margin-top: 2px;
-        background: none;
-        -webkit-background-clip: initial;
-        background-clip: initial;
-        color: #fff;
-        font-size: clamp(44px, 12.8vw, 58px);
-        line-height: .94;
+        max-width: 11.5ch;
+        margin: 4px 0 2px;
+        background: linear-gradient(100deg, #ffffff 0%, #e8f4ff 26%, #49a8ff 48%, #ff7ab8 72%, #fff4d2 100%);
+        background-size: 230% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        font-size: clamp(42px, 11.8vw, 54px);
+        line-height: 1.02;
         letter-spacing: 0;
-        text-shadow: 0 18px 48px rgba(0, 0, 0, .42);
-        animation: riseIn .8s .08s cubic-bezier(.2, .8, .2, 1) both;
+        text-wrap: balance;
+        text-shadow: none;
+        animation:
+          riseIn .8s .08s cubic-bezier(.2, .8, .2, 1) both,
+          titleGradientFlow 7.5s .9s ease-in-out infinite;
       }
 
       .adventure-copy .lead {
@@ -2285,8 +2295,9 @@
 
     @media (max-width: 430px) {
       .adventure-copy h2 {
-        font-size: clamp(40px, 11.8vw, 52px);
-        line-height: .96;
+        max-width: 11.2ch;
+        font-size: clamp(36px, 10.7vw, 47px);
+        line-height: 1.04;
       }
 
       .adventure-copy .lead {
