@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>西班牙葡萄牙行程 | 2026.09.26-10.09</title>
+  <title>噜噜家族西葡历险记 | 2026.09.26-10.09</title>
   <style>
     :root {
-      --ink: #111216;
-      --body: #3f4654;
-      --muted: #7b8494;
-      --faint: #a8b0bf;
-      --line: rgba(255, 255, 255, .58);
-      --line-soft: rgba(255, 255, 255, .34);
-      --paper: #f4f7fb;
-      --soft: rgba(255, 255, 255, .48);
-      --glass: rgba(255, 255, 255, .58);
-      --glass-strong: rgba(255, 255, 255, .76);
-      --glass-dim: rgba(255, 255, 255, .36);
+      --ink: #1d1d1f;
+      --body: #515154;
+      --muted: #86868b;
+      --faint: #a1a1a6;
+      --line: rgba(0, 0, 0, .08);
+      --line-soft: rgba(0, 0, 0, .05);
+      --paper: #f5f5f7;
+      --soft: rgba(255, 255, 255, .72);
+      --glass: rgba(255, 255, 255, .72);
+      --glass-strong: rgba(255, 255, 255, .86);
+      --glass-dim: rgba(255, 255, 255, .52);
       --city-barcelona-start: #0a84ff;
       --city-barcelona-end: #5ac8fa;
       --city-granada-start: #af52de;
@@ -27,10 +27,11 @@
       --city-lisbon-end: #64d2ff;
       --city-porto-start: #5856d6;
       --city-porto-end: #0a84ff;
+      --accent: #0071e3;
       --link: #0a84ff;
       --warning: #ff9f0a;
       --white: #ffffff;
-      --shadow: 0 24px 70px rgba(35, 49, 74, .14), inset 0 1px 0 rgba(255, 255, 255, .72);
+      --shadow: 0 18px 46px rgba(0, 0, 0, .08), inset 0 1px 0 rgba(255, 255, 255, .72);
       --radius: 26px;
     }
 
@@ -42,10 +43,10 @@
       margin: 0;
       color: var(--ink);
       background:
-        linear-gradient(125deg, rgba(10, 132, 255, .14), transparent 30%),
-        linear-gradient(235deg, rgba(255, 45, 85, .12), transparent 34%),
-        linear-gradient(180deg, #f8fbff 0%, #f3f7fb 46%, #eef4fb 100%);
-      font-family: Geist, Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        radial-gradient(circle at 16% 4%, rgba(0, 113, 227, .14), transparent 28%),
+        radial-gradient(circle at 84% 8%, rgba(255, 149, 0, .13), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f8f8fa 42%, #f5f5f7 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       line-height: 1.5;
       min-height: 100vh;
     }
@@ -57,9 +58,9 @@
       z-index: -1;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(255, 255, 255, .54) 0 1px, transparent 1px) 0 0 / 80px 80px,
-        linear-gradient(180deg, rgba(255, 255, 255, .46) 0 1px, transparent 1px) 0 0 / 80px 80px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .86), rgba(0, 0, 0, .08));
+        linear-gradient(90deg, rgba(0, 0, 0, .025) 0 1px, transparent 1px) 0 0 / 80px 80px,
+        linear-gradient(180deg, rgba(0, 0, 0, .02) 0 1px, transparent 1px) 0 0 / 80px 80px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .04));
     }
 
     a { color: inherit; }
@@ -116,7 +117,7 @@
     h1 {
       max-width: 920px;
       margin: 26px 0 18px;
-      font-family: Geist, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
       font-size: clamp(48px, 8vw, 104px);
       line-height: .95;
       letter-spacing: -2.4px;
@@ -253,22 +254,12 @@
     }
 
     .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, .8fr) minmax(320px, .55fr);
-      gap: 32px;
-      align-items: center;
-      margin-bottom: 18px;
-      padding: 22px;
-      border: 1px solid rgba(255, 255, 255, .62);
-      border-radius: 32px;
-      background: rgba(255, 255, 255, .42);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(30px) saturate(170%);
+      display: none;
     }
 
     h2 {
       margin: 0;
-      font-family: Geist, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
       font-size: 46px;
       font-weight: 700;
       line-height: 48px;
@@ -287,27 +278,123 @@
       max-width: 620px;
     }
 
+    .adventure-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(320px, .72fr) minmax(0, 1.28fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, .74);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(0, 113, 227, .16), transparent 30%),
+        radial-gradient(circle at 76% 12%, rgba(255, 45, 85, .11), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(255, 204, 0, .18), transparent 38%),
+        linear-gradient(135deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .58));
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .09), inset 0 1px 0 rgba(255, 255, 255, .86);
+      backdrop-filter: blur(32px) saturate(180%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .adventure-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(100deg, transparent 0 42%, rgba(255, 255, 255, .52) 42% 43%, transparent 43%),
+        linear-gradient(180deg, rgba(255, 255, 255, .38), transparent 48%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .adventure-copy {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      min-height: 368px;
+      padding: 10px 8px 10px 8px;
+    }
+
+    .hero-label {
+      width: max-content;
+      max-width: 100%;
+      padding: 8px 12px;
+      border: 1px solid rgba(0, 113, 227, .14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .78);
+      color: var(--accent);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .82);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 18px;
+    }
+
+    .adventure-copy h2 {
+      max-width: 680px;
+      font-size: clamp(52px, 6.2vw, 86px);
+      line-height: .96;
+      letter-spacing: 0;
+      background: linear-gradient(100deg, #1d1d1f 0%, #4f6dff 46%, #ff5fa2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .adventure-copy .lead {
+      max-width: 560px;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    .adventure-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .adventure-pills span {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      color: #1d1d1f;
+      border: 1px solid rgba(0, 0, 0, .06);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .05), inset 0 1px 0 rgba(255, 255, 255, .82);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
     .travel-theme {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .68fr);
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: 1.12fr .88fr .88fr;
+      gap: 10px;
+      margin: 0;
+      min-width: 0;
+      align-items: end;
     }
 
     .theme-hero,
     .theme-shot {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .62);
-      border-radius: 32px;
-      background: rgba(255, 255, 255, .38);
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, .78);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .42);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, .1), inset 0 1px 0 rgba(255, 255, 255, .82);
       backdrop-filter: blur(30px) saturate(175%);
       isolation: isolate;
+      transform: translateZ(0);
     }
 
     .theme-hero {
-      min-height: 300px;
+      min-height: 368px;
+      transform: translateY(6px) rotate(-1.2deg);
     }
 
     .theme-hero img,
@@ -327,18 +414,12 @@
       inset: 0;
       z-index: -1;
       background:
-        linear-gradient(90deg, rgba(12, 16, 24, .56), rgba(12, 16, 24, .08) 64%),
-        linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .22));
+        linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .2)),
+        linear-gradient(0deg, rgba(29, 29, 31, .08), transparent 54%);
     }
 
     .theme-copy {
-      width: min(430px, 72%);
-      min-height: 300px;
-      display: grid;
-      align-content: end;
-      gap: 10px;
-      padding: 26px;
-      color: var(--white);
+      display: none;
     }
 
     .theme-kicker {
@@ -369,16 +450,26 @@
 
     .theme-shots {
       display: grid;
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      grid-column: 2 / 4;
     }
 
     .theme-shot {
-      min-height: 143px;
+      min-height: 312px;
       margin: 0;
     }
 
+    .theme-shot:nth-child(1) {
+      transform: translateY(28px) rotate(1.3deg);
+    }
+
+    .theme-shot:nth-child(2) {
+      transform: translateY(-8px) rotate(-.6deg);
+    }
+
     .theme-shot::before {
-      background: linear-gradient(180deg, rgba(12, 16, 24, .08), rgba(12, 16, 24, .52));
+      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(18, 24, 36, .36));
     }
 
     .theme-shot figcaption {
@@ -598,7 +689,7 @@
     .date[data-city="波尔图"]::before { background: linear-gradient(90deg, var(--city-porto-start), var(--city-porto-end)); }
 
     .date strong {
-      font-family: Geist, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
       font-size: 28px;
       font-weight: 720;
       line-height: 32px;
@@ -1092,12 +1183,28 @@
 
       .section-head { grid-template-columns: 1fr; }
 
+      .adventure-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .adventure-copy {
+        min-height: auto;
+      }
+
       .travel-theme {
         grid-template-columns: 1fr;
       }
 
       .theme-shots {
+        grid-column: auto;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .theme-hero,
+      .theme-shot,
+      .theme-shot:nth-child(1),
+      .theme-shot:nth-child(2) {
+        transform: none;
       }
 
       .day { grid-template-columns: 124px minmax(0, 1fr); }
@@ -1122,7 +1229,24 @@
       h2 {
         font-size: 32px;
         line-height: 36px;
-        letter-spacing: -1.28px;
+        letter-spacing: 0;
+      }
+      .adventure-hero {
+        gap: 14px;
+        padding: 14px;
+        border-radius: 30px;
+      }
+      .adventure-copy {
+        gap: 12px;
+        padding: 8px 4px 2px;
+      }
+      .adventure-copy h2 {
+        font-size: 42px;
+        line-height: 1.08;
+      }
+      .adventure-pills span {
+        min-height: 34px;
+        font-size: 12px;
       }
       .lead {
         font-size: 13px;
@@ -1235,29 +1359,32 @@
   <main>
 <section id="days">
       <div class="wrap">
-        <div class="section-head">
-          <h2>每日行程</h2>
-      <p class="lead">每一天分成固定四段：日期城市主题、路线顺序、住宿和其他待办，方便出发前逐项确认。</p>
-        </div>
-
-        <div class="travel-theme" aria-label="噜噜和噜妹一起旅行主题">
-          <div class="theme-hero">
-            <img src="assets/lulu-lumei-barcelona.png" alt="噜噜和噜妹在巴塞罗那开启旅行">
-            <div class="theme-copy">
-              <span class="theme-kicker">噜噜和噜妹一起旅行</span>
-              <h3>伊比利亚阳光出发</h3>
-              <p>从巴塞罗那到格拉纳达、塞维利亚和里斯本，把每天的路线都变成一张软乎乎的旅行收藏。</p>
+        <div class="adventure-hero" aria-label="噜噜家族西葡历险记主题">
+          <div class="adventure-copy">
+            <span class="hero-label">Lulu Family Iberia Quest</span>
+            <h2>噜噜家族西葡历险记</h2>
+            <p class="lead">从巴塞罗那到格拉纳达、塞维利亚和里斯本，把每天的路线、住宿和待办收进一张软乎乎的西葡冒险地图。</p>
+            <div class="adventure-pills" aria-label="旅行概览">
+              <span>13 天行程</span>
+              <span>5 座城市</span>
+              <span>巴塞罗那出发</span>
+              <span>里斯本返程</span>
             </div>
           </div>
-          <div class="theme-shots">
-            <figure class="theme-shot">
-              <img src="assets/lulu-lumei-airport.png" alt="噜噜和噜妹准备从机场出发">
-              <figcaption>机场出发</figcaption>
-            </figure>
-            <figure class="theme-shot">
-              <img src="assets/lulu-lumei-sitges.png" alt="噜噜和噜妹在 Sitges 海边看日落">
-              <figcaption>Sitges 日落</figcaption>
-            </figure>
+          <div class="travel-theme">
+            <div class="theme-hero">
+              <img src="assets/lulu-lumei-barcelona.png" alt="噜噜和噜妹在巴塞罗那开启旅行">
+            </div>
+            <div class="theme-shots">
+              <figure class="theme-shot">
+                <img src="assets/lulu-lumei-airport.png" alt="噜噜和噜妹准备从机场出发">
+                <figcaption>机场出发</figcaption>
+              </figure>
+              <figure class="theme-shot">
+                <img src="assets/lulu-lumei-sitges.png" alt="噜噜和噜妹在 Sitges 海边看日落">
+                <figcaption>Sitges 日落</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
 
