@@ -1844,6 +1844,461 @@
       }
     }
 
+    @keyframes heroDrift {
+      0%, 100% { transform: scale(1.03) translate3d(0, 0, 0); }
+      50% { transform: scale(1.08) translate3d(-10px, -14px, 0); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: .55; transform: scale(.98); }
+      50% { opacity: .9; transform: scale(1.08); }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(22px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .mobile-itinerary-head {
+      display: none;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        background: #050506;
+        color: #f5f5f7;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      section#days {
+        padding: 0 0 44px;
+        background:
+          radial-gradient(circle at 12% 36%, rgba(0, 113, 227, .16), transparent 30%),
+          radial-gradient(circle at 90% 18%, rgba(255, 45, 132, .12), transparent 28%),
+          linear-gradient(180deg, #050506 0%, #08090d 45%, #050506 100%);
+      }
+
+      .adventure-hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: max(58px, calc(env(safe-area-inset-top) + 38px)) 24px 34px;
+        border-radius: 0;
+        overflow: hidden;
+        color: #fff;
+        background: #050506;
+      }
+
+      .adventure-hero::after {
+        content: "";
+        position: absolute;
+        inset: -20px;
+        z-index: 0;
+        background:
+          linear-gradient(180deg, rgba(5, 5, 6, .36) 0%, rgba(5, 5, 6, .18) 34%, rgba(5, 5, 6, .76) 84%, #050506 100%),
+          linear-gradient(90deg, rgba(5, 5, 6, .92) 0%, rgba(5, 5, 6, .28) 48%, rgba(5, 5, 6, .55) 100%),
+          url("assets/lulu-lumei-iberia-hero-mobile.png") center bottom / cover no-repeat;
+        animation: heroDrift 18s ease-in-out infinite;
+        transform-origin: center bottom;
+      }
+
+      .adventure-hero::before {
+        z-index: 1;
+        inset: auto -24% 10% -18%;
+        height: 42svh;
+        opacity: .72;
+        background:
+          radial-gradient(circle at 18% 70%, rgba(0, 113, 227, .46), transparent 36%),
+          radial-gradient(circle at 74% 68%, rgba(255, 45, 132, .34), transparent 38%),
+          radial-gradient(circle at 50% 94%, rgba(255, 204, 0, .18), transparent 44%);
+        filter: blur(22px);
+        animation: glowPulse 7s ease-in-out infinite;
+      }
+
+      .adventure-copy {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+        gap: 14px;
+      }
+
+      .hero-label {
+        min-height: 34px;
+        padding: 7px 11px;
+        border-color: rgba(255, 255, 255, .14);
+        background: rgba(255, 255, 255, .12);
+        color: rgba(255, 255, 255, .86);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16);
+        backdrop-filter: blur(18px) saturate(150%);
+        animation: riseIn .7s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .adventure-copy h2 {
+        max-width: 9ch;
+        margin-top: 2px;
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: #fff;
+        font-size: clamp(58px, 17vw, 78px);
+        line-height: .88;
+        letter-spacing: 0;
+        text-shadow: 0 18px 48px rgba(0, 0, 0, .42);
+        animation: riseIn .8s .08s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .adventure-copy .lead {
+        max-width: 24em;
+        color: rgba(255, 255, 255, .78);
+        font-size: 15px;
+        line-height: 1.56;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+        animation: riseIn .8s .18s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .adventure-pills {
+        max-width: 96%;
+        animation: riseIn .8s .28s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .adventure-pills span {
+        min-height: 32px;
+        border-radius: 999px;
+        border-color: rgba(255, 255, 255, .14);
+        background: rgba(255, 255, 255, .12);
+        color: rgba(255, 255, 255, .9);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
+        backdrop-filter: blur(18px) saturate(160%);
+      }
+
+      .hero-cta {
+        min-height: 50px;
+        margin-top: 4px;
+        padding: 13px 19px;
+        border-radius: 999px;
+        background: #0a84ff;
+        color: #fff;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 18px 54px rgba(10, 132, 255, .42);
+        animation: riseIn .8s .38s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .travel-theme {
+        display: none;
+      }
+
+      .mobile-itinerary-head {
+        display: grid;
+        gap: 4px;
+        width: calc(100% - 38px);
+        margin: 0 auto 12px;
+        padding-top: 28px;
+      }
+
+      .mobile-itinerary-head span {
+        color: rgba(255, 255, 255, .42);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .02em;
+      }
+
+      .mobile-itinerary-head h2 {
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: #fff;
+        font-size: 44px;
+        line-height: 48px;
+        letter-spacing: 0;
+      }
+
+      .filters {
+        top: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 10px 18px 12px;
+        gap: 10px;
+        border: 0;
+        border-radius: 0;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        background: linear-gradient(180deg, rgba(5, 5, 6, .96), rgba(5, 5, 6, .72));
+        box-shadow: 0 18px 44px rgba(0, 0, 0, .34);
+        backdrop-filter: blur(22px) saturate(160%);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-btn {
+        flex: 0 0 auto;
+        min-height: 48px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, .08);
+        background: rgba(255, 255, 255, .08);
+        color: rgba(255, 255, 255, .9);
+        font-size: 15px;
+        font-weight: 800;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+        transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+      }
+
+      .filter-btn:active {
+        transform: scale(.96);
+      }
+
+      .filter-btn.active,
+      .filter-btn.active:hover {
+        border-color: rgba(255, 255, 255, .84);
+        background: rgba(255, 255, 255, .92);
+        color: #09090b;
+        box-shadow: 0 14px 32px rgba(255, 255, 255, .1);
+      }
+
+      .day-list {
+        width: calc(100% - 28px);
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .day {
+        grid-template-columns: 1fr;
+        overflow: hidden;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, .1);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .045)),
+          rgba(16, 16, 20, .88);
+        box-shadow: 0 24px 58px rgba(0, 0, 0, .34), inset 0 1px 0 rgba(255, 255, 255, .08);
+        backdrop-filter: blur(22px) saturate(140%);
+        opacity: 0;
+        transform: translateY(22px) scale(.985);
+      }
+
+      .day.is-visible {
+        animation: cardIn .7s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .day[hidden] {
+        display: none;
+      }
+
+      .date {
+        grid-template-columns: auto minmax(0, 1fr);
+        padding: 20px 18px 16px 22px;
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        background:
+          radial-gradient(circle at 92% 12%, rgba(10, 132, 255, .18), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+      }
+
+      .date::before {
+        width: 5px;
+        opacity: .95;
+      }
+
+      .date strong {
+        color: #fff;
+        font-size: 34px;
+        line-height: 36px;
+        font-weight: 820;
+      }
+
+      .date em {
+        align-self: end;
+        color: rgba(255, 255, 255, .88);
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .date span {
+        grid-column: 1 / -1;
+        color: rgba(255, 255, 255, .58);
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      .day-body {
+        padding: 12px;
+        overflow: visible;
+      }
+
+      .day-modules {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        overflow: visible;
+        padding: 0;
+        scroll-snap-type: none;
+      }
+
+      .day-module,
+      .day-module.plan-combo,
+      .map-module,
+      .other-module {
+        flex: none;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .08);
+        background: rgba(255, 255, 255, .055);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+        backdrop-filter: blur(16px) saturate(130%);
+      }
+
+      .day-module strong {
+        color: rgba(255, 255, 255, .52);
+        font-size: 11px;
+        letter-spacing: .03em;
+      }
+
+      .day-module p,
+      .todo-group p {
+        color: rgba(255, 255, 255, .74);
+      }
+
+      .route-list li {
+        border-radius: 14px;
+        border-color: rgba(255, 255, 255, .06);
+        background: rgba(255, 255, 255, .07);
+        color: rgba(255, 255, 255, .9);
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      .day.is-visible .route-list li {
+        animation: riseIn .46s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .day.is-visible .route-list li:nth-child(1) { animation-delay: .04s; }
+      .day.is-visible .route-list li:nth-child(2) { animation-delay: .08s; }
+      .day.is-visible .route-list li:nth-child(3) { animation-delay: .12s; }
+      .day.is-visible .route-list li:nth-child(4) { animation-delay: .16s; }
+      .day.is-visible .route-list li:nth-child(5) { animation-delay: .2s; }
+      .day.is-visible .route-list li:nth-child(6) { animation-delay: .24s; }
+      .day.is-visible .route-list li:nth-child(7) { animation-delay: .28s; }
+      .day.is-visible .route-list li:nth-child(8) { animation-delay: .32s; }
+
+      .route-list li::before {
+        background: rgba(255, 255, 255, .14);
+        color: rgba(255, 255, 255, .8);
+      }
+
+      .route-spot::before {
+        background: #0a84ff;
+        color: #fff;
+      }
+
+      .route-activity::before {
+        background: rgba(255, 255, 255, .88);
+        color: #08090d;
+      }
+
+      .route-spot::after {
+        background: rgba(10, 132, 255, .18);
+        color: #7cc0ff;
+      }
+
+      .route-activity::after {
+        background: rgba(255, 255, 255, .12);
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .trip-map,
+      .map-placeholder {
+        border-radius: 16px;
+        border-color: rgba(255, 255, 255, .08);
+        background: rgba(255, 255, 255, .06);
+        color: rgba(255, 255, 255, .56);
+      }
+
+      .map-title {
+        border-bottom-color: rgba(255, 255, 255, .08);
+      }
+
+      .map-title span,
+      .geo-label-muted {
+        color: rgba(255, 255, 255, .48);
+        fill: rgba(255, 255, 255, .48);
+      }
+
+      .geo-map {
+        background:
+          linear-gradient(90deg, rgba(10, 132, 255, .12) 0 1px, transparent 1px) 0 0 / 32px 32px,
+          linear-gradient(180deg, rgba(255, 255, 255, .07) 0 1px, transparent 1px) 0 0 / 32px 32px,
+          rgba(7, 8, 12, .55);
+      }
+
+      .geo-route {
+        stroke: rgba(255, 255, 255, .92);
+      }
+
+      .geo-route-soft,
+      .geo-landmark {
+        stroke: rgba(255, 255, 255, .28);
+      }
+
+      .geo-pin circle {
+        fill: rgba(8, 9, 13, .86);
+        stroke: rgba(255, 255, 255, .86);
+      }
+
+      .geo-pin text,
+      .geo-label {
+        fill: rgba(255, 255, 255, .88);
+      }
+
+      .geo-caption span,
+      .todo-group b,
+      .todo-item {
+        border-color: rgba(255, 255, 255, .08);
+        background: rgba(255, 255, 255, .08);
+        color: rgba(255, 255, 255, .74);
+      }
+
+      .todo-item input {
+        accent-color: #0a84ff;
+      }
+
+      .todo-item input:checked + span {
+        color: rgba(255, 255, 255, .38);
+        text-decoration-color: rgba(255, 255, 255, .38);
+      }
+    }
+
+    @media (max-width: 680px) and (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .day,
+      .route-list li {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     @media print {
       .filters { display: none; }
       body { background: #fff; }
@@ -1886,6 +2341,11 @@
               </figure>
             </div>
           </div>
+        </div>
+
+        <div class="mobile-itinerary-head" aria-hidden="true">
+          <span>Inspirations</span>
+          <h2>每日行程</h2>
         </div>
 
         <div class="filters" id="itinerary" aria-label="城市筛选">
@@ -2090,6 +2550,21 @@
         }
       });
     });
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+
+      days.forEach((day) => revealObserver.observe(day));
+    } else {
+      days.forEach((day) => day.classList.add("is-visible"));
+    }
   </script>
 </body>
 </html>
