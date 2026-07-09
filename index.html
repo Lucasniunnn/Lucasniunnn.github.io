@@ -1873,6 +1873,10 @@
       display: none;
     }
 
+    .hero-route-card {
+      display: none;
+    }
+
     @media (max-width: 680px) {
       body {
         background: #050506;
@@ -1954,6 +1958,8 @@
       .adventure-copy h2 {
         max-width: 11.5ch;
         margin: 4px 0 2px;
+        display: grid;
+        gap: 6px;
         background: linear-gradient(100deg, #ffffff 0%, #e8f4ff 26%, #49a8ff 48%, #ff7ab8 72%, #fff4d2 100%);
         background-size: 230% 100%;
         -webkit-background-clip: text;
@@ -1968,6 +1974,10 @@
         animation:
           riseIn .8s .08s cubic-bezier(.2, .8, .2, 1) both,
           titleGradientFlow 7.5s .9s ease-in-out infinite;
+      }
+
+      .adventure-copy h2 span {
+        display: block;
       }
 
       .adventure-copy .lead {
@@ -2004,6 +2014,34 @@
         color: #fff;
         box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 18px 54px rgba(10, 132, 255, .42);
         animation: riseIn .8s .38s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .hero-route-card {
+        width: min(100%, 340px);
+        display: grid;
+        gap: 5px;
+        margin-top: 2px;
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 255, 255, .14);
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06));
+        color: rgba(255, 255, 255, .88);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 18px 42px rgba(0, 0, 0, .2);
+        backdrop-filter: blur(18px) saturate(150%);
+        animation: riseIn .8s .48s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .hero-route-card small {
+        color: rgba(255, 255, 255, .48);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .16em;
+      }
+
+      .hero-route-card b {
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 800;
       }
 
       .travel-theme {
@@ -2297,7 +2335,8 @@
       .adventure-copy h2 {
         max-width: 11.2ch;
         font-size: clamp(36px, 10.7vw, 47px);
-        line-height: 1.04;
+        line-height: 1.05;
+        gap: 7px;
       }
 
       .adventure-copy .lead {
@@ -2346,7 +2385,7 @@
         <div class="adventure-hero" aria-label="噜噜家族西葡历险记主题">
           <div class="adventure-copy">
             <span class="hero-label">Lulu Family Iberia Quest</span>
-            <h2>噜噜家族西葡历险记</h2>
+            <h2><span>噜噜家族</span><span>西葡历险记</span></h2>
             <p class="lead">从巴塞罗那到格拉纳达、塞维利亚和里斯本，把每天的路线、住宿和待办收进一张软乎乎的西葡冒险地图。</p>
             <div class="adventure-pills" aria-label="旅行概览">
               <span>13 天行程</span>
@@ -2355,6 +2394,10 @@
               <span>里斯本返程</span>
             </div>
             <a class="hero-cta" href="#itinerary">向上滑动查看每日行程</a>
+            <div class="hero-route-card" aria-label="旅行路线">
+              <small>ROUTE</small>
+              <b>巴塞罗那 → 格拉纳达 → 塞维利亚 → 里斯本</b>
+            </div>
           </div>
           <div class="travel-theme">
             <div class="theme-hero">
