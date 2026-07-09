@@ -1173,6 +1173,260 @@
       font-size: 13px;
     }
 
+    /* Portfolio-style travel cover and itinerary surface */
+    section#days {
+      padding: 0 0 64px;
+    }
+
+    section#days > .wrap {
+      width: min(1440px, 100%);
+    }
+
+    .adventure-hero {
+      min-height: 100svh;
+      margin: 0;
+      padding: clamp(28px, 5vw, 72px);
+      border: 0;
+      border-radius: 0;
+      grid-template-columns: minmax(330px, .72fr) minmax(0, 1.28fr);
+      align-items: center;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(0, 113, 227, .18), transparent 28%),
+        radial-gradient(circle at 82% 12%, rgba(255, 45, 132, .14), transparent 30%),
+        radial-gradient(circle at 62% 86%, rgba(255, 204, 0, .18), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #f6f7fb 48%, #fff7fb 100%);
+      box-shadow: none;
+    }
+
+    .adventure-hero::before {
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, .045) 0 1px, transparent 1px) 0 0 / 96px 96px,
+        linear-gradient(180deg, rgba(0, 0, 0, .035) 0 1px, transparent 1px) 0 0 / 96px 96px,
+        linear-gradient(116deg, transparent 0 54%, rgba(255, 255, 255, .74) 54% 55%, transparent 55%);
+      opacity: .72;
+    }
+
+    .adventure-copy {
+      max-width: 640px;
+      min-height: auto;
+      gap: 18px;
+      padding: 0;
+      z-index: 2;
+    }
+
+    .hero-label {
+      min-height: 44px;
+      align-items: center;
+      display: inline-flex;
+      padding: 10px 16px;
+      border-color: rgba(0, 113, 227, .18);
+      background: rgba(255, 255, 255, .74);
+      box-shadow: 0 12px 34px rgba(0, 113, 227, .08), inset 0 1px 0 rgba(255, 255, 255, .9);
+    }
+
+    .adventure-copy h2 {
+      max-width: 740px;
+      font-size: clamp(58px, 7.4vw, 112px);
+      line-height: .9;
+      letter-spacing: 0;
+    }
+
+    .adventure-copy .lead {
+      max-width: 590px;
+      font-size: clamp(17px, 1.55vw, 22px);
+      line-height: 1.55;
+      color: rgba(29, 29, 31, .72);
+    }
+
+    .hero-cta {
+      width: max-content;
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #1d1d1f;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, .18);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .hero-cta::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      margin-left: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, .2);
+    }
+
+    .travel-theme {
+      position: relative;
+      height: min(68svh, 660px);
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: stretch;
+      perspective: 1200px;
+    }
+
+    .theme-hero,
+    .theme-shot {
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, .82);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .64), rgba(255, 255, 255, .3)),
+        rgba(255, 255, 255, .56);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .12), inset 0 1px 0 rgba(255, 255, 255, .86);
+    }
+
+    .theme-hero {
+      min-height: 0;
+      transform: rotate(-2deg) translate3d(0, 10px, 0);
+    }
+
+    .theme-hero img,
+    .theme-shot img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .theme-shots {
+      position: absolute;
+      inset: auto 0 7% auto;
+      width: min(46%, 440px);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      grid-column: auto;
+      z-index: 3;
+    }
+
+    .theme-shot {
+      min-height: clamp(140px, 18svh, 210px);
+    }
+
+    .theme-shot:nth-child(1) {
+      transform: rotate(4deg) translateX(4%);
+    }
+
+    .theme-shot:nth-child(2) {
+      transform: rotate(-3deg) translateX(-10%);
+    }
+
+    .theme-shot figcaption {
+      background: rgba(255, 255, 255, .72);
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, .72);
+    }
+
+    .filters {
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      width: min(1320px, calc(100% - 32px));
+      margin: 18px auto 14px;
+      padding: 6px;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .68);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .08), inset 0 1px 0 rgba(255, 255, 255, .85);
+    }
+
+    .filter-btn {
+      min-height: 40px;
+      border-radius: 14px;
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+      font-weight: 700;
+    }
+
+    .filter-btn.active,
+    .filter-btn.active:hover {
+      border-color: rgba(0, 0, 0, .08);
+      background: #1d1d1f;
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, .14);
+    }
+
+    .day-list {
+      width: min(1320px, calc(100% - 32px));
+      margin: 0 auto;
+      gap: 14px;
+    }
+
+    .day {
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .68);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .07), inset 0 1px 0 rgba(255, 255, 255, .82);
+    }
+
+    .day:hover {
+      border-color: rgba(0, 0, 0, .08);
+      box-shadow: 0 22px 54px rgba(0, 0, 0, .09), inset 0 1px 0 rgba(255, 255, 255, .86);
+    }
+
+    .date {
+      border-right: 1px solid rgba(0, 0, 0, .06);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .42));
+    }
+
+    .date::before {
+      width: 14px;
+      box-shadow: none;
+    }
+
+    .day-body {
+      background: transparent;
+    }
+
+    .day-modules {
+      gap: 10px;
+    }
+
+    .day-module {
+      border-radius: 16px;
+      border-color: rgba(0, 0, 0, .05);
+      background: rgba(255, 255, 255, .62);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .78);
+    }
+
+    .day-module.plan-combo {
+      background: rgba(255, 255, 255, .76);
+    }
+
+    .route-list {
+      gap: 7px;
+    }
+
+    .route-list li {
+      min-height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, .04);
+      border-left-width: 3px;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .map-placeholder,
+    .trip-map {
+      border-radius: 14px;
+      border-color: rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .58);
+    }
+
     @media (max-width: 980px) {
       .hero-stats,
       .route-grid,
@@ -1345,6 +1599,251 @@
       }
     }
 
+    @media (max-width: 680px) {
+      section#days {
+        padding-bottom: 34px;
+      }
+
+      section#days > .wrap {
+        width: 100%;
+      }
+
+      .adventure-hero {
+        min-height: 100svh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        align-content: space-between;
+        gap: 14px;
+        padding: max(22px, env(safe-area-inset-top)) 18px 18px;
+        border-radius: 0;
+      }
+
+      .adventure-copy {
+        gap: 10px;
+        padding: 0;
+      }
+
+      .hero-label {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .adventure-copy h2 {
+        max-width: 10ch;
+        font-size: clamp(48px, 15vw, 66px);
+        line-height: .92;
+      }
+
+      .adventure-copy .lead {
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.48;
+        color: rgba(29, 29, 31, .68);
+      }
+
+      .adventure-pills {
+        gap: 7px;
+      }
+
+      .adventure-pills span {
+        min-height: 32px;
+        padding: 7px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+      }
+
+      .hero-cta {
+        min-height: 40px;
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+
+      .travel-theme {
+        height: auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 2px 0 0;
+      }
+
+      .theme-hero,
+      .theme-shot,
+      .theme-shot:nth-child(1),
+      .theme-shot:nth-child(2) {
+        transform: none;
+      }
+
+      .theme-hero {
+        min-height: 0;
+        height: clamp(250px, 38svh, 360px);
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 50% 60%, rgba(255, 204, 0, .18), transparent 44%),
+          rgba(255, 255, 255, .5);
+      }
+
+      .theme-hero img {
+        object-fit: contain;
+        object-position: center bottom;
+        padding: 6px;
+      }
+
+      .theme-hero::before {
+        background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .28));
+      }
+
+      .theme-shots {
+        position: static;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .theme-shot {
+        min-height: 102px;
+        border-radius: 16px;
+      }
+
+      .theme-shot img {
+        object-position: center;
+      }
+
+      .theme-shot figcaption {
+        inset: auto 8px 8px;
+        padding: 5px 8px;
+        font-size: 11px;
+        line-height: 14px;
+      }
+
+      .filters {
+        top: 8px;
+        width: calc(100% - 20px);
+        margin: 12px auto 12px;
+        padding: 5px;
+        border-radius: 16px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+
+      .filter-btn {
+        min-height: 38px;
+        padding: 8px 13px;
+        border-radius: 12px;
+      }
+
+      .day-list {
+        width: calc(100% - 20px);
+        gap: 12px;
+      }
+
+      .day {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .74);
+      }
+
+      .date {
+        padding: 14px 14px 13px 18px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .05);
+        background: rgba(255, 255, 255, .68);
+      }
+
+      .date::before {
+        width: 5px;
+      }
+
+      .date strong {
+        font-size: 28px;
+        line-height: 30px;
+      }
+
+      .date em {
+        font-size: 15px;
+      }
+
+      .date span {
+        color: rgba(81, 81, 84, .72);
+      }
+
+      .day-body {
+        padding: 10px;
+        overflow: hidden;
+      }
+
+      .day-modules {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 2px 4px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .day-modules::-webkit-scrollbar {
+        display: none;
+      }
+
+      .day-module {
+        flex: 0 0 min(86vw, 380px);
+        scroll-snap-align: start;
+        border-radius: 14px;
+        padding: 12px;
+        background: rgba(255, 255, 255, .64);
+      }
+
+      .day-module.plan-combo {
+        flex-basis: min(88vw, 400px);
+      }
+
+      .map-module {
+        flex-basis: min(88vw, 400px);
+      }
+
+      .other-module {
+        flex-basis: min(82vw, 360px);
+      }
+
+      .day-module strong {
+        margin-bottom: 8px;
+        font-size: 11px;
+        color: rgba(81, 81, 84, .72);
+      }
+
+      .route-list li {
+        grid-template-columns: 22px minmax(0, 1fr) auto;
+        min-height: 42px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .78);
+      }
+
+      .route-list li::before {
+        width: 22px;
+        height: 22px;
+      }
+
+      .route-list li::after {
+        font-size: 10px;
+      }
+
+      .trip-map,
+      .map-placeholder {
+        border-radius: 12px;
+      }
+
+      .geo-map svg {
+        min-height: 170px;
+      }
+
+      .todo-item {
+        border-radius: 12px;
+      }
+    }
+
     @media print {
       .filters { display: none; }
       body { background: #fff; }
@@ -1370,6 +1869,7 @@
               <span>巴塞罗那出发</span>
               <span>里斯本返程</span>
             </div>
+            <a class="hero-cta" href="#itinerary">向上滑动查看每日行程</a>
           </div>
           <div class="travel-theme">
             <div class="theme-hero">
@@ -1388,7 +1888,7 @@
           </div>
         </div>
 
-        <div class="filters" aria-label="城市筛选">
+        <div class="filters" id="itinerary" aria-label="城市筛选">
           <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">全部</button>
           <button class="filter-btn" type="button" data-filter="巴塞罗那" aria-pressed="false">巴塞罗那</button>
           <button class="filter-btn" type="button" data-filter="格拉纳达" aria-pressed="false">格拉纳达</button>
