@@ -1392,6 +1392,12 @@
       text-decoration: none;
     }
 
+    .spot-source.is-disabled {
+      color: rgba(255, 255, 255, .38);
+      cursor: default;
+      pointer-events: none;
+    }
+
     .spot-source:hover {
       text-decoration: underline;
     }
@@ -3726,7 +3732,7 @@
     });
 
     function spotImageCacheKey(spot) {
-      return `iberia-spot-image-${spot.cn}-${spot.en}`;
+      return `iberia-spot-image-v2-${spot.cn}-${spot.en}`;
     }
 
     function readCachedSpotImage(spot) {
@@ -3780,17 +3786,19 @@
 
     async function getSpotImage(spot, spotKey) {
       const localMedia = localSpotImages[spotKey];
-      if (localMedia?.image) return localMedia;
+      if (localMedia?.image && localMedia.source !== "本地主题图") return localMedia;
 
       const cached = readCachedSpotImage(spot);
-      if (cached?.image) return cached;
+      if (cached?.image && cached.source !== "本地主题图") return cached;
 
       const media = await getWikipediaImage(spot) || await getCommonsImage(spot) || {
-        image: fallbackSpotImage,
-        source: "本地主题图"
+        image: localMedia?.image || fallbackSpotImage,
+        source: "景点图片待补充"
       };
 
-      writeCachedSpotImage(spot, media);
+      if (media.source !== "景点图片待补充") {
+        writeCachedSpotImage(spot, media);
+      }
       return media;
     }
 
@@ -3800,13 +3808,16 @@
 
     function setSpotMedia(media, spot) {
       const image = media?.image || fallbackSpotImage;
+      const hasRealImage = media?.source && media.source !== "景点图片待补充" && media.source !== "本地主题图";
       const source = isExternalUrl(media?.source) ? media.source : image;
       spotImage.dataset.fallbackApplied = "false";
       spotImage.src = image;
       spotImage.alt = `${spot.cn} 图片`;
       spotImageLink.href = image;
-      spotSource.href = source;
-      spotSource.textContent = source === image ? "打开图片" : "图片来源";
+      spotImageLink.style.pointerEvents = hasRealImage ? "" : "none";
+      spotSource.href = hasRealImage ? source : "#";
+      spotSource.textContent = hasRealImage ? (source === image ? "打开图片" : "图片来源") : "景点图片待补充";
+      spotSource.classList.toggle("is-disabled", !hasRealImage);
     }
 
     spotImage.addEventListener("error", () => {
@@ -3814,8 +3825,10 @@
       spotImage.dataset.fallbackApplied = "true";
       spotImage.src = fallbackSpotImage;
       spotImageLink.href = fallbackSpotImage;
-      spotSource.href = fallbackSpotImage;
-      spotSource.textContent = "打开图片";
+      spotImageLink.style.pointerEvents = "none";
+      spotSource.href = "#";
+      spotSource.textContent = "景点图片待补充";
+      spotSource.classList.add("is-disabled");
     });
 
     async function openSpotModal(spotKey) {
