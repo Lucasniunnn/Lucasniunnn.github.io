@@ -3330,6 +3330,12 @@
     } else {
       days.forEach((day) => day.classList.add("is-visible"));
     }
+
+    if ("serviceWorker" in navigator && /^https?:$/.test(window.location.protocol)) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
   </script>
 </body>
 </html>
