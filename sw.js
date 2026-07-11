@@ -1,4 +1,4 @@
-const CACHE_NAME = "lulu-iberia-trip-v20260711-1";
+const CACHE_NAME = "lulu-iberia-trip-v20260711-3";
 const CORE_ASSETS = [
   "./",
   "./index.html",
