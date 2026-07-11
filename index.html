@@ -670,6 +670,7 @@
       position: relative;
       border-right: 1px solid rgba(255, 255, 255, .48);
       overflow: hidden;
+      cursor: pointer;
     }
 
     .date::before {
@@ -712,6 +713,37 @@
       line-height: 20px;
     }
 
+    .day-toggle {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      align-self: end;
+      border: 1px solid rgba(63, 70, 84, .12);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .44);
+      color: currentColor;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .day-toggle span {
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-2px) rotate(45deg);
+      transition: transform .2s ease;
+    }
+
+    .day.is-collapsed .day-toggle span {
+      transform: translateY(2px) rotate(-135deg);
+    }
+
+    .day.is-collapsed .day-body {
+      display: none;
+    }
+
     .day-body {
       padding: 12px;
       display: block;
@@ -720,7 +752,7 @@
 
     .day-modules {
       display: grid;
-      grid-template-columns: minmax(320px, 1.25fr) minmax(280px, 1.1fr) minmax(120px, .45fr) minmax(240px, 1fr);
+      grid-template-columns: minmax(180px, .7fr) minmax(320px, 1.25fr) minmax(280px, 1.1fr);
       gap: 8px;
       align-items: stretch;
     }
@@ -1101,6 +1133,22 @@
     .route-activity .route-status-tag {
       background: rgba(255, 255, 255, .55);
       color: var(--body);
+    }
+
+    .route-transfer {
+      border-left-color: #ff9f0a;
+      background: linear-gradient(135deg, rgba(255, 159, 10, .18), rgba(255, 255, 255, .58));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), 0 10px 24px rgba(255, 159, 10, .1);
+    }
+
+    .route-transfer::before {
+      background: #ff9f0a;
+      color: #1c1200;
+    }
+
+    .route-transfer .route-status-tag {
+      background: rgba(255, 159, 10, .18);
+      color: #8a4b00;
     }
 
     .route-list li.is-complete .route-label {
@@ -2544,6 +2592,16 @@
           linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
       }
 
+      .day-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+        border-color: rgba(255, 255, 255, .12);
+        background: rgba(255, 255, 255, .08);
+        color: rgba(255, 255, 255, .82);
+      }
+
       .date::before {
         width: 5px;
         opacity: .95;
@@ -2677,6 +2735,22 @@
       .route-activity .route-status-tag {
         background: rgba(255, 255, 255, .12);
         color: rgba(255, 255, 255, .78);
+      }
+
+      .route-transfer {
+        border-color: rgba(255, 159, 10, .28);
+        background: linear-gradient(135deg, rgba(255, 159, 10, .2), rgba(255, 255, 255, .07));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 10px 26px rgba(255, 159, 10, .1);
+      }
+
+      .route-transfer::before {
+        background: rgba(255, 159, 10, .25);
+        color: #ffd28a;
+      }
+
+      .route-transfer .route-status-tag {
+        background: rgba(255, 159, 10, .18);
+        color: #ffd28a;
       }
 
       .route-spot .route-status-tag {
@@ -2909,158 +2983,145 @@
 
         <div class="day-list">
           <article class="day" data-city="巴塞罗那">
-            <div class="date" data-city="巴塞罗那"><strong>09.26</strong><em>巴塞罗那</em><span>抵达 + Tibidabo 夜景</span></div>
+            <div class="date" data-city="巴塞罗那" role="button" tabindex="0"><strong>09.26</strong><em>香港 ✈️ 巴塞罗那</em><span>抵达 + Tibidabo 夜景</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那机场 BCN T1</li><li class="route-activity">酒店放行李</li><li class="route-spot" data-spot="placa-catalunya" tabindex="0">加泰罗尼亚广场</li><li class="route-spot" data-spot="passeig-gracia" tabindex="0">感恩大道</li><li class="route-activity">晚餐</li><li class="route-spot" data-spot="tibidabo" tabindex="0">Tibidabo 夜景</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana），9.26-9.29，3 晚。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity route-transfer">13:25 抵达巴塞罗那 BCN T1</li><li class="route-activity">酒店放行李</li><li class="route-spot" data-spot="placa-catalunya" tabindex="0">加泰罗尼亚广场</li><li class="route-spot" data-spot="passeig-gracia" tabindex="0">感恩大道</li><li class="route-activity">晚餐</li><li class="route-spot" data-spot="tibidabo" tabindex="0">Tibidabo 夜景</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>抵达后轻量进城 + Tibidabo 夜景 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.26 巴塞罗那抵达后路线地图"><path class="geo-water" d="M258 0 C250 56 276 112 252 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M48 166 L250 42 M84 192 L282 78 M110 28 L238 190 M26 112 L260 132"/><path class="geo-route-soft" d="M40 176 C78 150 104 134 132 118"/><path class="geo-route" d="M132 118 L162 94 L146 74 L184 132 L92 34"/><g class="geo-pin"><circle cx="40" cy="176" r="9"/><text x="40" y="176">1</text></g><text class="geo-label" x="52" y="180">BCN T1</text><g class="geo-pin"><circle cx="132" cy="118" r="9"/><text x="132" y="118">2</text></g><text class="geo-label" x="88" y="108">酒店</text><g class="geo-pin"><circle cx="162" cy="94" r="9"/><text x="162" y="94">3</text></g><text class="geo-label" x="174" y="96">加泰广场</text><g class="geo-pin"><circle cx="146" cy="74" r="9"/><text x="146" y="74">4</text></g><text class="geo-label" x="104" y="62">感恩大道</text><g class="geo-pin"><circle cx="184" cy="132" r="9"/><text x="184" y="132">5</text></g><text class="geo-label" x="196" y="138">晚餐</text><g class="geo-pin"><circle cx="92" cy="34" r="9"/><text x="92" y="34">6</text></g><text class="geo-label" x="104" y="38">Tibidabo 夜景</text><text class="geo-label-muted" x="268" y="196">Mediterranean</text></svg></div><div class="geo-caption"><span>1 机场</span><span>3 市中心</span><span>4 Passeig de Gracia</span><span>5 晚餐</span><span>6 Tibidabo</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana），9.26-9.29，3 晚。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-1"><span>已定 EK381 香港国际 T1 00:40 → 杜拜国际 T3 04:25，参考编号 QDXEKS</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-2"><span>已定 EK185 杜拜国际 T3 08:15 → 巴塞罗那 BCN T1 13:25，参考编号 QDXEKS</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-3"><span>确认 BCN 机场到 Hotel Indigo Barcelona Plaza Espana 路线</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-4"><span>确认晚餐后去 Tibidabo 和返程交通</span></label></div></div><div class="todo-group"><b>门票</b><p>无，当天不安排门票</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="巴塞罗那">
-            <div class="date" data-city="巴塞罗那"><strong>09.27</strong><em>巴塞罗那</em><span>哥特区 + Born + 海边</span></div>
+            <div class="date" data-city="巴塞罗那" role="button" tabindex="0"><strong>09.27</strong><em>巴塞罗那</em><span>哥特区 + Born + 海边</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="arc-triomf" tabindex="0">凯旋门</li><li class="route-spot" data-spot="picasso-museum" tabindex="0">毕加索博物馆</li><li class="route-spot" data-spot="barcelona-cathedral" tabindex="0">巴塞罗那主教堂</li><li class="route-spot" data-spot="pont-del-bisbe" tabindex="0">叹息桥</li><li class="route-spot" data-spot="kiss-wall" tabindex="0">亲吻墙</li><li class="route-spot" data-spot="boqueria" tabindex="0">波盖利亚市场（备选）</li><li class="route-spot" data-spot="columbus-monument" tabindex="0">哥伦布纪念塔</li><li class="route-spot" data-spot="barceloneta-beach" tabindex="0">海边四个盒子日落</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="arc-triomf" tabindex="0">凯旋门</li><li class="route-spot" data-spot="picasso-museum" tabindex="0">毕加索博物馆</li><li class="route-spot" data-spot="barcelona-cathedral" tabindex="0">巴塞罗那主教堂</li><li class="route-spot" data-spot="pont-del-bisbe" tabindex="0">叹息桥</li><li class="route-spot" data-spot="kiss-wall" tabindex="0">亲吻墙</li><li class="route-spot" data-spot="boqueria" tabindex="0">波盖利亚市场（备选）</li><li class="route-spot" data-spot="columbus-monument" tabindex="0">哥伦布纪念塔</li><li class="route-spot" data-spot="barceloneta-beach" tabindex="0">海边四个盒子日落</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>哥特区 - Born - 市场备选 - 海边日落 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.27 巴塞罗那哥特区路线地图"><path class="geo-water" d="M244 68 C260 108 254 158 230 220 L320 220 L320 66 Z"/><path class="geo-landmark" d="M78 44 L248 180 M64 134 L238 90 M128 28 L172 206"/><path class="geo-route" d="M196 70 L198 104 L176 112 L162 126 L154 148 L190 166 L244 164"/><g class="geo-pin"><circle cx="196" cy="70" r="9"/><text x="196" y="70">1</text></g><text class="geo-label" x="208" y="72">凯旋门</text><g class="geo-pin"><circle cx="198" cy="104" r="9"/><text x="198" y="104">2</text></g><text class="geo-label" x="210" y="108">毕加索</text><g class="geo-pin"><circle cx="176" cy="112" r="9"/><text x="176" y="112">3</text></g><text class="geo-label" x="96" y="106">主教堂</text><g class="geo-pin"><circle cx="162" cy="126" r="9"/><text x="162" y="126">4</text></g><text class="geo-label" x="78" y="132">叹息桥/亲吻墙</text><g class="geo-pin"><circle cx="154" cy="148" r="9"/><text x="154" y="148">5</text></g><text class="geo-label" x="70" y="152">波盖利亚备选</text><g class="geo-pin"><circle cx="190" cy="166" r="9"/><text x="190" y="166">6</text></g><text class="geo-label" x="106" y="176">哥伦布纪念塔</text><g class="geo-pin"><circle cx="244" cy="164" r="9"/><text x="244" y="164">7</text></g><text class="geo-label" x="256" y="168">海边日落</text><text class="geo-label-muted" x="70" y="60">Gothic</text><text class="geo-label-muted" x="206" y="92">Born</text></svg></div><div class="geo-caption"><span>1 凯旋门</span><span>2 Born</span><span>3-4 哥特区</span><span>5 市场备选</span><span>7 海边日落</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><p>无城际交通</p></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0927-ticket-1"><span>订毕加索博物馆 09.27 门票</span></label></div></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="巴塞罗那">
-            <div class="date" data-city="巴塞罗那"><strong>09.28</strong><em>巴塞罗那</em><span>Blanes + Tossa 海岸线</span></div>
+            <div class="date" data-city="巴塞罗那" role="button" tabindex="0"><strong>09.28</strong><em>巴塞罗那 ⇄ Blanes / Tossa</em><span>海岸线当天往返</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那 → Blanes</li><li class="route-spot" data-spot="blanes" tabindex="0">Blanes 海边 / 老城</li><li class="route-activity">Blanes → Tossa de Mar</li><li class="route-spot" data-spot="tossa-old-town" tabindex="0">Tossa de Mar 老城</li><li class="route-spot" data-spot="tossa-beach" tabindex="0">Tossa 海边</li><li class="route-activity">拉罗卡购物村（待定）</li><li class="route-activity">返回巴塞罗那</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity route-transfer">巴塞罗那 → Blanes</li><li class="route-spot" data-spot="blanes" tabindex="0">Blanes 海边 / 老城</li><li class="route-activity route-transfer">Blanes → Tossa de Mar</li><li class="route-spot" data-spot="tossa-old-town" tabindex="0">Tossa de Mar 老城</li><li class="route-spot" data-spot="tossa-beach" tabindex="0">Tossa 海边</li><li class="route-activity">拉罗卡购物村（待定）</li><li class="route-activity route-transfer">返回巴塞罗那</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>Blanes - Tossa - 拉罗卡待定 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.28 Blanes Tossa 拉罗卡路线地图"><path class="geo-water" d="M198 0 C238 42 252 102 234 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M54 164 L250 46 M70 190 L232 84 M40 112 L228 136"/><path class="geo-route-soft" d="M70 162 C126 112 154 86 206 48"/><path class="geo-route" d="M70 162 L188 64 L224 36 M188 64 L126 116 L70 162"/><g class="geo-pin"><circle cx="70" cy="162" r="9"/><text x="70" y="162">1</text></g><text class="geo-label" x="34" y="150">巴塞罗那</text><g class="geo-pin"><circle cx="188" cy="64" r="9"/><text x="188" y="64">2</text></g><text class="geo-label" x="142" y="52">Blanes</text><g class="geo-pin"><circle cx="224" cy="36" r="9"/><text x="224" y="36">3</text></g><text class="geo-label" x="236" y="40">Tossa</text><g class="geo-pin"><circle cx="126" cy="116" r="9"/><text x="126" y="116">4</text></g><text class="geo-label" x="138" y="120">拉罗卡待定</text><text class="geo-label-muted" x="238" y="188">Costa Brava</text><text class="geo-label-muted" x="112" y="86">coast day</text></svg></div><div class="geo-caption"><span>1 巴塞罗那</span><span>2 Blanes</span><span>3 Tossa de Mar</span><span>4 拉罗卡待定</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>巴塞隆拿西班牙广场英迪格酒店 - IHG 旗下酒店（Hotel Indigo Barcelona Plaza Espana）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0928-transport-1"><span>确认 Blanes + Tossa 当天交通方式</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0928-transport-2"><span>决定是否加入拉罗卡购物村</span></label></div></div><div class="todo-group"><b>门票</b><p>无，海岸线当天不安排门票</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="巴塞罗那">
-            <div class="date" data-city="巴塞罗那"><strong>09.29</strong><em>巴塞罗那</em><span>高迪线 + 晚飞格拉纳达</span></div>
+            <div class="date" data-city="巴塞罗那" role="button" tabindex="0"><strong>09.29</strong><em>巴塞罗那 ✈️ 格拉纳达</em><span>高迪线 + 晚飞格拉纳达</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="sagrada-familia" tabindex="0">圣家堂</li><li class="route-spot" data-spot="casa-batllo" tabindex="0">巴特罗之家</li><li class="route-spot" data-spot="casa-mila" tabindex="0">米拉之家</li><li class="route-spot" data-spot="park-guell" tabindex="0">桂尔公园（待定）</li><li class="route-activity">返回酒店取行李</li><li class="route-activity">BCN 机场</li><li class="route-activity">21:15-22:45 飞格拉纳达</li><li class="route-activity">格拉纳达酒店 late check-in</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="sagrada-familia" tabindex="0">12:00 入内 圣家堂</li><li class="route-spot" data-spot="casa-batllo" tabindex="0">巴特罗之家</li><li class="route-spot" data-spot="casa-mila" tabindex="0">米拉之家</li><li class="route-spot" data-spot="park-guell" tabindex="0">桂尔公园（待定）</li><li class="route-activity">返回酒店取行李</li><li class="route-activity">BCN 机场</li><li class="route-activity route-transfer">21:15-22:45 飞格拉纳达</li><li class="route-activity">格拉纳达酒店 late check-in</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>高迪线 + 晚飞格拉纳达 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.29 巴塞罗那高迪线和飞格拉纳达路线地图"><path class="geo-water" d="M262 58 C274 116 266 164 246 220 L320 220 L320 52 Z"/><path class="geo-landmark" d="M74 48 L246 160 M98 30 L210 190 M54 118 L260 104"/><path class="geo-route" d="M186 58 L146 108 L132 88 L88 42 L132 150 L74 178 L244 184"/><g class="geo-pin"><circle cx="186" cy="58" r="9"/><text x="186" y="58">1</text></g><text class="geo-label" x="198" y="62">圣家堂</text><g class="geo-pin"><circle cx="146" cy="108" r="9"/><text x="146" y="108">2</text></g><text class="geo-label" x="158" y="112">巴特罗之家</text><g class="geo-pin"><circle cx="132" cy="88" r="9"/><text x="132" y="88">3</text></g><text class="geo-label" x="54" y="90">米拉之家</text><g class="geo-pin"><circle cx="88" cy="42" r="9"/><text x="88" y="42">4</text></g><text class="geo-label" x="100" y="42">桂尔公园待定</text><g class="geo-pin"><circle cx="132" cy="150" r="9"/><text x="132" y="150">5</text></g><text class="geo-label" x="56" y="154">酒店取行李</text><g class="geo-pin"><circle cx="74" cy="178" r="9"/><text x="74" y="178">6</text></g><text class="geo-label" x="86" y="184">BCN 机场</text><g class="geo-pin"><circle cx="244" cy="184" r="9"/><text x="244" y="184">7</text></g><text class="geo-label" x="210" y="204">GRX 22:45</text><text class="geo-label-muted" x="116" y="132">Eixample</text><text class="geo-label-muted" x="216" y="166">flight</text></svg></div><div class="geo-caption"><span>1 圣家堂</span><span>2-3 Passeig de Gracia</span><span>4 桂尔公园待定</span><span>6 BCN 21:15</span><span>7 GRX 22:45</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-1"><span>已定 VY2018 巴塞罗那 BCN T1 21:15 → 格拉纳达机场 22:45，参考编号 KGHLRY</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-2"><span>确认高迪线后回 Hotel Indigo Barcelona Plaza Espana 取行李时间</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-3"><span>确认格拉纳达住宿 late check-in</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-1"><span>订圣家堂 09.29 门票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-2"><span>订巴特罗之家或米拉之家其中一个</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-3"><span>桂尔公园待定，决定是否入内</span></label></div></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="格拉纳达">
-            <div class="date" data-city="格拉纳达"><strong>09.30</strong><em>格拉纳达</em><span>阿宫 + 圣山高处线</span></div>
+            <div class="date" data-city="格拉纳达" role="button" tabindex="0"><strong>09.30</strong><em>格拉纳达</em><span>阿宫 + 圣山高处线</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">阿尔拜辛区住宿出发</li><li class="route-spot" data-spot="alhambra" tabindex="0">阿尔罕布拉宫</li><li class="route-spot" data-spot="palacio-cordova" tabindex="0">科尔多瓦宫（顺带看）</li><li class="route-spot" data-spot="sacromonte-abbey" tabindex="0">圣山修道院</li><li class="route-spot" data-spot="mirador-san-miguel" tabindex="0">圣米格尔观景台</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">阿尔拜辛区住宿出发</li><li class="route-spot" data-spot="alhambra" tabindex="0">14:30 入内 阿尔罕布拉宫</li><li class="route-spot" data-spot="palacio-cordova" tabindex="0">科尔多瓦宫（顺带看）</li><li class="route-spot" data-spot="sacromonte-abbey" tabindex="0">圣山修道院</li><li class="route-spot" data-spot="mirador-san-miguel" tabindex="0">圣米格尔观景台</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>阿尔拜辛住宿 - 阿宫 - 科尔多瓦宫 - 圣山高处线 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.30 格拉纳达阿宫圣山路线地图"><path class="geo-water" d="M214 0 C248 46 258 104 226 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M56 168 L248 54 M88 194 L228 88 M126 38 L180 202 M46 118 L264 128"/><path class="geo-route-soft" d="M126 82 C150 126 178 158 214 150"/><path class="geo-route" d="M126 82 L214 150 L202 70 L256 54 L224 36"/><g class="geo-pin"><circle cx="126" cy="82" r="9"/><text x="126" y="82">1</text></g><text class="geo-label" x="54" y="72">住宿/阿尔拜辛</text><g class="geo-pin"><circle cx="214" cy="150" r="9"/><text x="214" y="150">2</text></g><text class="geo-label" x="226" y="154">阿尔罕布拉宫</text><g class="geo-pin"><circle cx="202" cy="70" r="9"/><text x="202" y="70">3</text></g><text class="geo-label" x="114" y="72">科尔多瓦宫</text><g class="geo-pin"><circle cx="256" cy="54" r="9"/><text x="256" y="54">4</text></g><text class="geo-label" x="214" y="42">圣山修道院</text><g class="geo-pin"><circle cx="224" cy="36" r="9"/><text x="224" y="36">5</text></g><text class="geo-label" x="146" y="30">圣米格尔观景台</text><text class="geo-label-muted" x="210" y="178">阿尔罕布拉宫</text><text class="geo-label-muted" x="238" y="76">圣山</text></svg></div><div class="geo-caption"><span>1 住宿</span><span>2 阿尔罕布拉宫</span><span>3 科尔多瓦宫</span><span>4 圣山修道院</span><span>5 圣米格尔观景台</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0930-transport-1"><span>圣山修道院和圣米格尔观景台山路较多，建议回程打车</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0930-ticket-1"><span>订阿尔罕布拉宫通票，优先上午入场</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0930-ticket-2"><span>确认票面姓名和护照/证件一致</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0930-ticket-3"><span>查圣山修道院开放时间</span></label></div></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="格拉纳达">
-            <div class="date" data-city="格拉纳达"><strong>10.01</strong><em>格拉纳达</em><span>老城教堂群 + 阿尔拜辛</span></div>
+            <div class="date" data-city="格拉纳达" role="button" tabindex="0"><strong>10.01</strong><em>格拉纳达</em><span>老城教堂群 + 阿尔拜辛</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">阿尔拜辛区住宿出发</li><li class="route-spot" data-spot="basilica-angustias" tabindex="0">圣母七苦教堂（顺带看）</li><li class="route-spot" data-spot="plaza-isabel" tabindex="0">伊莎贝尔广场（顺带看）</li><li class="route-spot" data-spot="granada-cathedral" tabindex="0">格拉纳达主教堂（必去入内 / 可与皇家礼拜堂二选一）</li><li class="route-spot" data-spot="royal-chapel-granada" tabindex="0">皇家礼拜堂（必去入内 / 可与主教堂二选一）</li><li class="route-activity">修女的甜点（顺带看）</li><li class="route-spot" data-spot="monastery-san-jeronimo" tabindex="0">圣赫罗尼莫修道院（看兴趣入内）</li><li class="route-spot" data-spot="basilica-san-juan-de-dios" tabindex="0">天赐圣若望圣殿 / 圣胡安德迪奥斯大教堂（必去入内）</li><li class="route-spot" data-spot="plaza-san-miguel-bajo" tabindex="0">圣米盖尔巴赫广场（顺带看）</li><li class="route-spot" data-spot="dar-al-horra" tabindex="0">达尔阿尔奥拉宫（顺带看）</li><li class="route-spot" data-spot="albaicin" tabindex="0">阿尔拜辛区（顺带看）</li><li class="route-spot" data-spot="mirador-san-nicolas" tabindex="0">圣尼古拉斯广场 & 观景台（必去）</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">阿尔拜辛区住宿出发</li><li class="route-spot" data-spot="basilica-angustias" tabindex="0">圣母七苦教堂（顺带看）</li><li class="route-spot" data-spot="plaza-isabel" tabindex="0">伊莎贝尔广场（顺带看）</li><li class="route-spot" data-spot="granada-cathedral" tabindex="0">格拉纳达主教堂（必去入内 / 可与皇家礼拜堂二选一）</li><li class="route-spot" data-spot="royal-chapel-granada" tabindex="0">皇家礼拜堂（必去入内 / 可与主教堂二选一）</li><li class="route-activity">修女的甜点（顺带看）</li><li class="route-spot" data-spot="monastery-san-jeronimo" tabindex="0">圣赫罗尼莫修道院（看兴趣入内）</li><li class="route-spot" data-spot="basilica-san-juan-de-dios" tabindex="0">天赐圣若望圣殿 / 圣胡安德迪奥斯大教堂（必去入内）</li><li class="route-spot" data-spot="plaza-san-miguel-bajo" tabindex="0">圣米盖尔巴赫广场（顺带看）</li><li class="route-spot" data-spot="dar-al-horra" tabindex="0">达尔阿尔奥拉宫（顺带看）</li><li class="route-spot" data-spot="albaicin" tabindex="0">阿尔拜辛区（顺带看）</li><li class="route-spot" data-spot="mirador-san-nicolas" tabindex="0">圣尼古拉斯广场 & 观景台（必去）</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>住宿 - 老城教堂群 - 阿尔拜辛观景台 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.01 格拉纳达老城和阿尔拜辛路线地图"><path class="geo-water" d="M214 0 C236 48 236 106 206 168 C194 194 204 212 222 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M42 158 L246 58 M70 188 L230 88 M96 30 L182 206 M34 112 L260 124"/><path class="geo-route-soft" d="M126 82 C102 124 82 148 72 166"/><path class="geo-route" d="M126 82 L72 166 L126 136 L138 120 L116 148 L78 70 L104 88 L148 102 L166 82 L186 76 L206 74"/><g class="geo-pin"><circle cx="126" cy="82" r="9"/><text x="126" y="82">1</text></g><text class="geo-label" x="54" y="72">住宿/阿尔拜辛</text><g class="geo-pin"><circle cx="72" cy="166" r="9"/><text x="72" y="166">2</text></g><text class="geo-label" x="20" y="184">圣母七苦教堂</text><g class="geo-pin"><circle cx="126" cy="136" r="9"/><text x="126" y="136">3</text></g><text class="geo-label" x="138" y="146">伊莎贝尔广场</text><g class="geo-pin"><circle cx="138" cy="120" r="9"/><text x="138" y="120">4</text></g><text class="geo-label" x="150" y="120">主教堂/皇家礼拜堂</text><g class="geo-pin"><circle cx="116" cy="148" r="9"/><text x="116" y="148">5</text></g><text class="geo-label" x="42" y="150">修女甜点</text><g class="geo-pin"><circle cx="78" cy="70" r="9"/><text x="78" y="70">6</text></g><text class="geo-label" x="90" y="72">圣赫罗尼莫</text><g class="geo-pin"><circle cx="104" cy="88" r="9"/><text x="104" y="88">7</text></g><text class="geo-label" x="116" y="88">天赐圣若望/圣胡安</text><g class="geo-pin"><circle cx="148" cy="102" r="9"/><text x="148" y="102">8</text></g><text class="geo-label" x="160" y="104">圣米盖尔巴赫</text><g class="geo-pin"><circle cx="166" cy="82" r="9"/><text x="166" y="82">9</text></g><text class="geo-label" x="84" y="62">达尔阿尔奥拉宫</text><g class="geo-pin"><circle cx="186" cy="76" r="9"/><text x="186" y="76">10</text></g><text class="geo-label" x="198" y="76">阿尔拜辛</text><g class="geo-pin"><circle cx="206" cy="74" r="9"/><text x="206" y="74">11</text></g><text class="geo-label" x="218" y="78">圣尼古拉斯</text><text class="geo-label-muted" x="168" y="154">阿尔拜辛上坡</text><text class="geo-label-muted" x="56" y="48">老城</text></svg></div><div class="geo-caption"><span>1 住宿</span><span>2-7 老城教堂群</span><span>8-10 阿尔拜辛</span><span>11 圣尼古拉斯</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>阿尔拜辛区，格拉纳达罗萨尔德圣佩德罗街 18010</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1001-transport-1"><span>第一站圣母七苦教堂离住宿较远，可先打车下山，再一路走回阿尔拜辛</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1001-ticket-1"><span>查天赐圣若望圣殿开放时间和门票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1001-ticket-2"><span>查圣赫罗尼莫修道院开放时间</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1001-ticket-3"><span>皇家礼拜堂 / 格拉纳达主教堂决定是否入内</span></label></div></div><div class="todo-group"><b>优先级</b><p>必去：天赐圣若望圣殿、主教堂/皇家礼拜堂二选一、圣尼古拉斯观景台；看兴趣：圣赫罗尼莫修道院；其余顺带看。</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="塞维利亚">
-            <div class="date" data-city="塞维利亚"><strong>10.02</strong><em>塞维利亚</em><span>下午河岸 + 西班牙广场</span></div>
+            <div class="date" data-city="塞维利亚" role="button" tabindex="0"><strong>10.02</strong><em>格拉纳达 🚌 塞维利亚</em><span>下午河岸 + 西班牙广场</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="torre-del-oro" tabindex="0">黄金塔</li><li class="route-spot" data-spot="puente-san-telmo" tabindex="0">圣特尔莫桥</li><li class="route-spot" data-spot="palacio-san-telmo" tabindex="0">圣特尔莫皇宫</li><li class="route-spot" data-spot="university-seville" tabindex="0">塞维利亚大学</li><li class="route-spot" data-spot="plaza-espana-seville" tabindex="0">西班牙广场</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla），10.02-10.05，3 晚。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity route-transfer">上午格拉纳达 → 塞维利亚，抵达后先去酒店放行李</li><li class="route-spot" data-spot="torre-del-oro" tabindex="0">黄金塔</li><li class="route-spot" data-spot="puente-san-telmo" tabindex="0">圣特尔莫桥</li><li class="route-spot" data-spot="palacio-san-telmo" tabindex="0">圣特尔莫皇宫</li><li class="route-spot" data-spot="university-seville" tabindex="0">塞维利亚大学</li><li class="route-spot" data-spot="plaza-espana-seville" tabindex="0">西班牙广场</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>黄金塔 - 圣特尔莫 - 塞维利亚大学 - 西班牙广场 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.02 塞维利亚下午河岸和西班牙广场路线地图"><path class="geo-water" d="M62 0 C82 48 76 92 64 138 C56 168 66 194 92 220 L0 220 L0 0 Z"/><path class="geo-landmark" d="M48 38 L258 188 M38 132 L286 108 M128 20 L214 206"/><path class="geo-route" d="M154 126 L176 134 L192 148 L210 168 L246 188"/><g class="geo-pin"><circle cx="154" cy="126" r="9"/><text x="154" y="126">1</text></g><text class="geo-label" x="166" y="130">黄金塔</text><g class="geo-pin"><circle cx="176" cy="134" r="9"/><text x="176" y="134">2</text></g><text class="geo-label" x="188" y="136">圣特尔莫桥</text><g class="geo-pin"><circle cx="192" cy="148" r="9"/><text x="192" y="148">3</text></g><text class="geo-label" x="204" y="152">圣特尔莫皇宫</text><g class="geo-pin"><circle cx="210" cy="168" r="9"/><text x="210" y="168">4</text></g><text class="geo-label" x="146" y="184">塞维利亚大学</text><g class="geo-pin"><circle cx="246" cy="188" r="9"/><text x="246" y="188">5</text></g><text class="geo-label" x="188" y="206">西班牙广场</text></svg></div><div class="geo-caption"><span>1 黄金塔</span><span>2-3 圣特尔莫</span><span>4 塞维利亚大学</span><span>5 西班牙广场</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla），10.02-10.05，3 晚。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1002-transport-1"><span>订 10.02 早上 Granada → Sevilla 大巴</span></label></div></div><div class="todo-group"><b>门票</b><p>当天以外观和散步为主，暂不安排重门票</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="塞维利亚">
-            <div class="date" data-city="塞维利亚"><strong>10.03</strong><em>塞维利亚</em><span>王宫大教堂 + 弗拉门戈</span></div>
+            <div class="date" data-city="塞维利亚" role="button" tabindex="0"><strong>10.03</strong><em>塞维利亚</em><span>王宫大教堂 + 弗拉门戈</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="alcazar-seville" tabindex="0">塞维利亚王宫</li><li class="route-spot" data-spot="seville-cathedral" tabindex="0">塞维利亚主教座堂</li><li class="route-spot" data-spot="flamenco-dance-museum" tabindex="0">弗拉门戈舞博物馆</li><li class="route-activity">弗拉门戈舞蹈表演（Teatro Flamenco Sevilla）</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="alcazar-seville" tabindex="0">塞维利亚王宫</li><li class="route-spot" data-spot="seville-cathedral" tabindex="0">塞维利亚主教座堂</li><li class="route-spot" data-spot="flamenco-dance-museum" tabindex="0">弗拉门戈舞博物馆</li><li class="route-activity">弗拉门戈舞蹈表演（Teatro Flamenco Sevilla）</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>王宫 - 主教座堂 - 弗拉门戈 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.03 塞维利亚王宫大教堂弗拉门戈路线地图"><path class="geo-water" d="M44 0 C66 54 60 112 42 220 L0 220 L0 0 Z"/><path class="geo-landmark" d="M58 174 L270 46 M72 44 L248 174 M116 20 L180 204"/><path class="geo-route" d="M126 150 L110 132 L146 116 L176 64"/><g class="geo-pin"><circle cx="126" cy="150" r="9"/><text x="126" y="150">1</text></g><text class="geo-label" x="138" y="154">王宫</text><g class="geo-pin"><circle cx="110" cy="132" r="9"/><text x="110" y="132">2</text></g><text class="geo-label" x="122" y="136">主教座堂</text><g class="geo-pin"><circle cx="146" cy="116" r="9"/><text x="146" y="116">3</text></g><text class="geo-label" x="158" y="120">弗拉门戈舞博物馆</text><g class="geo-pin"><circle cx="176" cy="64" r="9"/><text x="176" y="64">4</text></g><text class="geo-label" x="90" y="62">Teatro Flamenco</text></svg></div><div class="geo-caption"><span>1 王宫</span><span>2 主教座堂</span><span>3 舞博物馆</span><span>4 晚场表演</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><p>无城际交通</p></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1003-ticket-1"><span>订塞维利亚王宫 10.03 上午票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1003-ticket-2"><span>订塞维利亚主教座堂门票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1003-ticket-3"><span>订 10.03 晚上 Teatro Flamenco Sevilla 表演</span></label></div></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="塞维利亚">
-            <div class="date" data-city="塞维利亚"><strong>10.04</strong><em>塞维利亚</em><span>补漏与轻松收尾</span></div>
+            <div class="date" data-city="塞维利亚" role="button" tabindex="0"><strong>10.04</strong><em>塞维利亚</em><span>补漏与轻松收尾</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="museum-fine-arts-seville" tabindex="0">塞维利亚美术博物馆</li><li class="route-spot" data-spot="plaza-toros-seville" tabindex="0">塞维利亚斗牛广场</li><li class="route-spot" data-spot="casa-pilatos" tabindex="0">彼拉多官邸</li><li class="route-spot" data-spot="metropol-parasol" tabindex="0">都市阳伞</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="museum-fine-arts-seville" tabindex="0">塞维利亚美术博物馆</li><li class="route-spot" data-spot="plaza-toros-seville" tabindex="0">塞维利亚斗牛广场</li><li class="route-spot" data-spot="casa-pilatos" tabindex="0">彼拉多官邸</li><li class="route-spot" data-spot="metropol-parasol" tabindex="0">都市阳伞</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>美术馆 - 斗牛广场 - 彼拉多官邸 - 都市阳伞 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.04 塞维利亚美术馆斗牛场彼拉多官邸都市阳伞路线地图"><path class="geo-water" d="M52 0 C72 58 68 116 46 220 L0 220 L0 0 Z"/><path class="geo-landmark" d="M64 178 L264 48 M76 44 L242 176 M112 24 L194 206"/><path class="geo-route" d="M116 96 L138 130 L188 104 L214 70"/><g class="geo-pin"><circle cx="116" cy="96" r="9"/><text x="116" y="96">1</text></g><text class="geo-label" x="128" y="100">美术馆</text><g class="geo-pin"><circle cx="138" cy="130" r="9"/><text x="138" y="130">2</text></g><text class="geo-label" x="68" y="136">斗牛广场</text><g class="geo-pin"><circle cx="188" cy="104" r="9"/><text x="188" y="104">3</text></g><text class="geo-label" x="200" y="108">彼拉多官邸</text><g class="geo-pin"><circle cx="214" cy="70" r="9"/><text x="214" y="70">4</text></g><text class="geo-label" x="226" y="74">都市阳伞</text></svg></div><div class="geo-caption"><span>1 美术馆</span><span>2 斗牛广场</span><span>3 彼拉多官邸</span><span>4 都市阳伞</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>塞维利亚伊瓦拉酒店（Hotel Ybarra Sevilla）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1004-transport-1"><span>已定 10.05 TP1103 塞维利亚机场 10:15 → 里斯本国际 T1 10:20，参考编号 ZMN2DE</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1004-transport-2"><span>10.05 早上从 Hotel Ybarra Sevilla 去 SVQ 机场，提前确认叫车时间和行李额</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1004-ticket-1"><span>查塞维利亚美术博物馆、彼拉多官邸、都市阳伞开放时间和门票</span></label></div></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="里斯本">
-            <div class="date" data-city="里斯本"><strong>10.05</strong><em>里斯本</em><span>下午老城黄线</span></div>
+            <div class="date" data-city="里斯本" role="button" tabindex="0"><strong>10.05</strong><em>塞维利亚 ✈️ 里斯本</em><span>下午老城黄线</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="rossio-square" tabindex="0">罗西欧广场（必去）</li><li class="route-spot" data-spot="santa-justa-lift" tabindex="0">圣胡斯塔升降机（有体力再去 / 可只外观）</li><li class="route-spot" data-spot="carmo-convent" tabindex="0">卡尔莫修道院（有体力再去）</li><li class="route-spot" data-spot="mnac-lisbon" tabindex="0">国家当代艺术博物馆（有体力再去）</li><li class="route-spot" data-spot="money-museum-lisbon" tabindex="0">Money Museum（有体力再去）</li><li class="route-spot" data-spot="arco-rua-augusta" tabindex="0">奥古斯塔街之门（必去）</li><li class="route-spot" data-spot="lisbon-cathedral" tabindex="0">里斯本主教座堂（必去）</li><li class="route-spot" data-spot="miradouro-santa-luzia" tabindex="0">圣卢西亚观景台（必去）</li><li class="route-spot" data-spot="alfama" tabindex="0">阿尔法玛（有体力再去）</li><li class="route-spot" data-spot="sao-jorge-castle" tabindex="0">圣若热城堡（有体力再去）</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton），10.05-10.08，3 晚。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity route-transfer">10:15-10:20 塞维利亚飞里斯本，落地后先去酒店放行李</li><li class="route-spot" data-spot="rossio-square" tabindex="0">罗西欧广场（必去）</li><li class="route-spot" data-spot="santa-justa-lift" tabindex="0">圣胡斯塔升降机（有体力再去 / 可只外观）</li><li class="route-spot" data-spot="carmo-convent" tabindex="0">卡尔莫修道院（有体力再去）</li><li class="route-spot" data-spot="mnac-lisbon" tabindex="0">国家当代艺术博物馆（有体力再去）</li><li class="route-spot" data-spot="money-museum-lisbon" tabindex="0">Money Museum（有体力再去）</li><li class="route-spot" data-spot="arco-rua-augusta" tabindex="0">奥古斯塔街之门（必去）</li><li class="route-spot" data-spot="lisbon-cathedral" tabindex="0">里斯本主教座堂（必去）</li><li class="route-spot" data-spot="miradouro-santa-luzia" tabindex="0">圣卢西亚观景台（必去）</li><li class="route-spot" data-spot="alfama" tabindex="0">阿尔法玛（有体力再去）</li><li class="route-spot" data-spot="sao-jorge-castle" tabindex="0">圣若热城堡（有体力再去）</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>罗西欧 - 卡尔莫 - 奥古斯塔 - 主教座堂 - 阿尔法玛 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.05 里斯本老城黄线地图"><path class="geo-water" d="M112 184 C176 176 236 188 320 160 L320 220 L100 220 Z"/><path class="geo-landmark" d="M70 54 L250 174 M52 122 L274 92 M126 34 L180 178"/><path class="geo-route" d="M118 72 L128 92 L112 104 L136 130 L170 148 L190 144 L210 120 L230 96 L246 82 L214 74"/><g class="geo-pin"><circle cx="118" cy="72" r="9"/><text x="118" y="72">1</text></g><text class="geo-label" x="130" y="76">罗西欧广场</text><g class="geo-pin"><circle cx="128" cy="92" r="9"/><text x="128" y="92">2</text></g><text class="geo-label" x="140" y="96">圣胡斯塔升降机</text><g class="geo-pin"><circle cx="112" cy="104" r="9"/><text x="112" y="104">3</text></g><text class="geo-label" x="38" y="110">卡尔莫修道院</text><g class="geo-pin"><circle cx="136" cy="130" r="9"/><text x="136" y="130">4</text></g><text class="geo-label" x="30" y="136">国家当代艺术博物馆</text><g class="geo-pin"><circle cx="170" cy="148" r="9"/><text x="170" y="148">5</text></g><text class="geo-label" x="182" y="152">Money Museum</text><g class="geo-pin"><circle cx="190" cy="144" r="9"/><text x="190" y="144">6</text></g><text class="geo-label" x="202" y="148">奥古斯塔街之门</text><g class="geo-pin"><circle cx="210" cy="120" r="9"/><text x="210" y="120">7</text></g><text class="geo-label" x="222" y="124">里斯本主教座堂</text><g class="geo-pin"><circle cx="230" cy="96" r="9"/><text x="230" y="96">8</text></g><text class="geo-label" x="242" y="100">圣卢西亚观景台</text><g class="geo-pin"><circle cx="246" cy="82" r="9"/><text x="246" y="82">9</text></g><text class="geo-label" x="210" y="64">阿尔法玛</text><g class="geo-pin"><circle cx="214" cy="74" r="9"/><text x="214" y="74">10</text></g><text class="geo-label" x="226" y="78">圣若热城堡</text></svg></div><div class="geo-caption"><span>1-3 罗西欧/卡尔莫</span><span>4-6 下城</span><span>7-10 阿尔法玛</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton），10.05-10.08，3 晚。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1005-transport-1"><span>已定 TP1103 塞维利亚机场 10:15 → 里斯本国际 T1 10:20，落地后先去 The Emerald House Lisbon 放行李</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1005-ticket-1"><span>查圣若热城堡、卡尔莫修道院、圣胡斯塔升降机开放时间</span></label></div></div><div class="todo-group"><b>优先级</b><p>必去：罗西欧广场、奥古斯塔街之门、主教座堂、圣卢西亚观景台；其他看航班落地和体力。</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="里斯本">
-            <div class="date" data-city="里斯本"><strong>10.06</strong><em>里斯本</em><span>贝伦 + 博物馆黄线</span></div>
+            <div class="date" data-city="里斯本" role="button" tabindex="0"><strong>10.06</strong><em>里斯本</em><span>贝伦 + 博物馆黄线</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="belem-tower" tabindex="0">贝伦塔（必去）</li><li class="route-spot" data-spot="monument-discoveries" tabindex="0">发现者纪念碑（必去）</li><li class="route-spot" data-spot="jeronimos-monastery" tabindex="0">热罗尼莫斯修道院（必去）</li><li class="route-spot" data-spot="ajuda-palace" tabindex="0">阿茹达宫（有体力再去）</li><li class="route-spot" data-spot="national-ancient-art" tabindex="0">国立古代美术馆（三选一）</li><li class="route-spot" data-spot="puppet-museum-lisbon" tabindex="0">木偶博物馆（三选一）</li><li class="route-spot" data-spot="estrela-basilica" tabindex="0">埃什特雷拉圣殿（三选一）</li><li class="route-spot" data-spot="gulbenkian-museum" tabindex="0">古尔本基安美术馆（有体力再去）</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="belem-tower" tabindex="0">贝伦塔（必去）</li><li class="route-spot" data-spot="monument-discoveries" tabindex="0">发现者纪念碑（必去）</li><li class="route-spot" data-spot="jeronimos-monastery" tabindex="0">热罗尼莫斯修道院（必去）</li><li class="route-spot" data-spot="ajuda-palace" tabindex="0">阿茹达宫（有体力再去）</li><li class="route-spot" data-spot="national-ancient-art" tabindex="0">国立古代美术馆（三选一）</li><li class="route-spot" data-spot="puppet-museum-lisbon" tabindex="0">木偶博物馆（三选一）</li><li class="route-spot" data-spot="estrela-basilica" tabindex="0">埃什特雷拉圣殿（三选一）</li><li class="route-spot" data-spot="gulbenkian-museum" tabindex="0">古尔本基安美术馆（有体力再去）</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>贝伦塔 - 热罗尼莫斯 - 阿茹达 - 美术馆线 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.06 里斯本贝伦博物馆黄线地图"><path class="geo-water" d="M0 162 C90 150 164 170 320 148 L320 220 L0 220 Z"/><path class="geo-landmark" d="M44 132 L276 48 M62 88 L248 152 M126 32 L178 180"/><path class="geo-route" d="M42 146 L74 138 L88 118 L120 96 L166 132 L188 112 L210 88 L250 42"/><g class="geo-pin"><circle cx="42" cy="146" r="9"/><text x="42" y="146">1</text></g><text class="geo-label" x="54" y="150">贝伦塔</text><g class="geo-pin"><circle cx="74" cy="138" r="9"/><text x="74" y="138">2</text></g><text class="geo-label" x="86" y="142">发现者纪念碑</text><g class="geo-pin"><circle cx="88" cy="118" r="9"/><text x="88" y="118">3</text></g><text class="geo-label" x="100" y="122">热罗尼莫斯修道院</text><g class="geo-pin"><circle cx="120" cy="96" r="9"/><text x="120" y="96">4</text></g><text class="geo-label" x="132" y="100">阿茹达宫</text><g class="geo-pin"><circle cx="166" cy="132" r="9"/><text x="166" y="132">5</text></g><text class="geo-label" x="178" y="136">国立古代美术馆</text><g class="geo-pin"><circle cx="188" cy="112" r="9"/><text x="188" y="112">6</text></g><text class="geo-label" x="200" y="116">木偶博物馆</text><g class="geo-pin"><circle cx="210" cy="88" r="9"/><text x="210" y="88">7</text></g><text class="geo-label" x="222" y="92">埃什特雷拉圣殿</text><g class="geo-pin"><circle cx="250" cy="42" r="9"/><text x="250" y="42">8</text></g><text class="geo-label" x="178" y="34">古尔本基安美术馆</text></svg></div><div class="geo-caption"><span>1-4 贝伦/阿茹达</span><span>5-7 美术馆/圣殿</span><span>8 古尔本基安</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><p>无城际交通</p></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1006-ticket-1"><span>查热罗尼莫斯修道院、阿茹达宫、古尔本基安美术馆开放和购票方式</span></label></div></div><div class="todo-group"><b>优先级</b><p>必去：贝伦塔、发现者纪念碑、热罗尼莫斯修道院；国立古代美术馆/木偶博物馆/埃什特雷拉圣殿三选一。</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="波尔图">
-            <div class="date" data-city="波尔图"><strong>10.07</strong><em>波尔图</em><span>波尔图当天往返</span></div>
+            <div class="date" data-city="波尔图" role="button" tabindex="0"><strong>10.07</strong><em>里斯本 ⇄ 波尔图</em><span>波尔图当天往返</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="sao-bento-station" tabindex="0">圣本笃车站（必去）</li><li class="route-spot" data-spot="santo-ildefonso-church" tabindex="0">圣伊尔德丰索堂（必去）</li><li class="route-spot" data-spot="chapel-of-souls" tabindex="0">灵魂小教堂（必去）</li><li class="route-spot" data-spot="carmo-church-porto" tabindex="0">卡尔莫教堂（必去）</li><li class="route-spot" data-spot="livraria-lello" tabindex="0">莱罗书店（二选一：莱罗/教士塔）</li><li class="route-spot" data-spot="clerigos-church" tabindex="0">教士教堂（顺带看）</li><li class="route-spot" data-spot="clerigos-tower" tabindex="0">教士塔（二选一：莱罗/教士塔）</li><li class="route-activity">McDonald's - Imperial（顺带看）</li><li class="route-spot" data-spot="prometeu-artesanato" tabindex="0">Prometeu Artesanato 纪念品商店（有体力再去）</li><li class="route-spot" data-spot="sao-francisco-porto" tabindex="0">圣方济各堂（有体力再去）</li><li class="route-spot" data-spot="douro-luis-bridge" tabindex="0">杜罗河边 + 路易一世大桥远观（必去）</li><li class="route-spot" data-spot="porto-cathedral" tabindex="0">波尔图主教座堂（有体力再去）</li><li class="route-spot" data-spot="mouzinho-silveira" tabindex="0">R. de Mouzinho da Silveira 大街（顺带看）</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton）。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity route-transfer">08:09 里斯本 Oriente → 11:20 波尔图 São Bento</li><li class="route-spot" data-spot="sao-bento-station" tabindex="0">圣本笃车站（必去）</li><li class="route-spot" data-spot="santo-ildefonso-church" tabindex="0">圣伊尔德丰索堂（必去）</li><li class="route-spot" data-spot="chapel-of-souls" tabindex="0">灵魂小教堂（必去）</li><li class="route-spot" data-spot="carmo-church-porto" tabindex="0">卡尔莫教堂（必去）</li><li class="route-spot" data-spot="livraria-lello" tabindex="0">莱罗书店（二选一：莱罗/教士塔）</li><li class="route-spot" data-spot="clerigos-church" tabindex="0">教士教堂（顺带看）</li><li class="route-spot" data-spot="clerigos-tower" tabindex="0">教士塔（二选一：莱罗/教士塔）</li><li class="route-activity">McDonald's - Imperial（顺带看）</li><li class="route-spot" data-spot="prometeu-artesanato" tabindex="0">Prometeu Artesanato 纪念品商店（有体力再去）</li><li class="route-spot" data-spot="sao-francisco-porto" tabindex="0">圣方济各堂（有体力再去）</li><li class="route-spot" data-spot="douro-luis-bridge" tabindex="0">杜罗河边 + 路易一世大桥远观（必去）</li><li class="route-spot" data-spot="porto-cathedral" tabindex="0">波尔图主教座堂（有体力再去）</li><li class="route-spot" data-spot="mouzinho-silveira" tabindex="0">R. de Mouzinho da Silveira 大街（顺带看）</li><li class="route-activity route-transfer">17:30 波尔图 → 20:40 返回里斯本</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>圣本笃 - 花砖教堂 - 教士塔 - 杜罗河 - 主教座堂 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.07 波尔图一日游路线地图"><path class="geo-water" d="M0 160 C74 146 132 178 206 164 C252 156 286 132 320 124 L320 220 L0 220 Z"/><path class="geo-landmark" d="M66 42 L260 178 M46 118 L278 78 M128 24 L184 196"/><path class="geo-route" d="M150 112 L182 88 L196 70 L112 74 L102 94 L118 102 L130 108 L148 122 L164 130 L176 150 L206 166 L170 126 L156 118"/><g class="geo-pin"><circle cx="150" cy="112" r="8"/><text x="150" y="112">1</text></g><text class="geo-label" x="162" y="116">圣本笃</text><g class="geo-pin"><circle cx="182" cy="88" r="8"/><text x="182" y="88">2</text></g><text class="geo-label" x="194" y="92">圣伊尔德丰索堂</text><g class="geo-pin"><circle cx="196" cy="70" r="8"/><text x="196" y="70">3</text></g><text class="geo-label" x="208" y="74">灵魂小教堂</text><g class="geo-pin"><circle cx="112" cy="74" r="8"/><text x="112" y="74">4</text></g><text class="geo-label" x="28" y="78">卡尔莫教堂</text><g class="geo-pin"><circle cx="102" cy="94" r="8"/><text x="102" y="94">5</text></g><text class="geo-label" x="38" y="100">莱罗书店</text><g class="geo-pin"><circle cx="118" cy="102" r="8"/><text x="118" y="102">6</text></g><text class="geo-label" x="42" y="116">教士教堂</text><g class="geo-pin"><circle cx="130" cy="108" r="8"/><text x="130" y="108">7</text></g><text class="geo-label" x="142" y="106">教士塔</text><g class="geo-pin"><circle cx="148" cy="122" r="8"/><text x="148" y="122">8</text></g><text class="geo-label" x="160" y="124">宫廷麦当劳</text><g class="geo-pin"><circle cx="164" cy="130" r="8"/><text x="164" y="130">9</text></g><text class="geo-label" x="176" y="134">纪念品店</text><g class="geo-pin"><circle cx="176" cy="150" r="8"/><text x="176" y="150">10</text></g><text class="geo-label" x="188" y="154">圣方济各堂</text><g class="geo-pin"><circle cx="206" cy="166" r="8"/><text x="206" y="166">11</text></g><text class="geo-label" x="218" y="170">杜罗河/大桥</text><g class="geo-pin"><circle cx="170" cy="126" r="8"/><text x="170" y="126">12</text></g><text class="geo-label" x="182" y="116">主教座堂</text><g class="geo-pin"><circle cx="156" cy="118" r="8"/><text x="156" y="118">13</text></g><text class="geo-label" x="62" y="138">Mouzinho 大街</text></svg></div><div class="geo-caption"><span>1 圣本笃</span><span>2-4 花砖教堂</span><span>5-7 书店/教士塔</span><span>10-12 河边核心</span><span>13 商业街</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>希萌镇格芮精选翡翠屋里斯本（The Emerald House Lisbon, Curio Collection by Hilton）。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1007-transport-1"><span>订 8:09 里斯本 Oriente → 11:20 波尔图 São Bento 高铁</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1007-transport-2"><span>订 17:30 波尔图 → 20:40 里斯本返程高铁，16 点多结束游览</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1007-ticket-1"><span>莱罗书店 €12，可抵扣消费；如排队久可只外观</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1007-ticket-2"><span>教士塔 €8，想看红瓦屋顶城市全景再登顶</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1007-ticket-3"><span>圣方济各堂 €11、波尔图主教座堂 €4，按时间决定是否入内</span></label></div></div><div class="todo-group"><b>优先级</b><p>必去：圣本笃车站、三座花砖教堂、杜罗河边/路易一世大桥；莱罗书店和教士塔二选一入内。</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
 
           <article class="day" data-city="里斯本">
-            <div class="date" data-city="里斯本"><strong>10.08</strong><em>里斯本</em><span>返程前山丘黄线</span></div>
+            <div class="date" data-city="里斯本" role="button" tabindex="0"><strong>10.08</strong><em>里斯本 ✈️ 香港</em><span>返程前山丘黄线</span><button class="day-toggle" type="button" aria-label="展开或收起当天行程" aria-expanded="true"><span></span></button></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="avenida-liberdade" tabindex="0">自由大道</li><li class="route-spot" data-spot="bairro-alto" tabindex="0">里斯本上城</li><li class="route-spot" data-spot="tram-28" tabindex="0">28路电车</li><li class="route-spot" data-spot="miradouro-graca" tabindex="0">恩宠观景台</li><li class="route-spot" data-spot="miradouro-senhora-monte" tabindex="0">Miradouro da Senhora do Monte</li></ol></div>
+                
+                <div class="day-module"><strong>当天住宿</strong><p>返程飞机上。10.08 从 The Emerald House Lisbon 退房并前往 LIS T1。</p></div><div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="avenida-liberdade" tabindex="0">自由大道</li><li class="route-spot" data-spot="bairro-alto" tabindex="0">里斯本上城</li><li class="route-spot" data-spot="tram-28" tabindex="0">28路电车</li><li class="route-spot" data-spot="miradouro-graca" tabindex="0">恩宠观景台</li><li class="route-spot" data-spot="miradouro-senhora-monte" tabindex="0">Miradouro da Senhora do Monte</li><li class="route-activity route-transfer">14:20 里斯本 T1 → 杜拜 T3；10.09 03:15 杜拜 → 15:25 香港</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>自由大道 - 上城 - 28路电车 - 山丘观景台 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="10.08 里斯本返程前山丘黄线地图"><path class="geo-water" d="M122 188 C178 174 236 188 320 158 L320 220 L110 220 Z"/><path class="geo-landmark" d="M58 46 L258 174 M58 138 L272 82 M130 24 L188 186"/><path class="geo-route" d="M94 38 L88 96 L132 112 L206 96 L236 66"/><g class="geo-pin"><circle cx="94" cy="38" r="9"/><text x="94" y="38">1</text></g><text class="geo-label" x="106" y="42">自由大道</text><g class="geo-pin"><circle cx="88" cy="96" r="9"/><text x="88" y="96">2</text></g><text class="geo-label" x="100" y="100">里斯本上城</text><g class="geo-pin"><circle cx="132" cy="112" r="9"/><text x="132" y="112">3</text></g><text class="geo-label" x="144" y="116">28路电车</text><g class="geo-pin"><circle cx="206" cy="96" r="9"/><text x="206" y="96">4</text></g><text class="geo-label" x="218" y="100">恩宠观景台</text><g class="geo-pin"><circle cx="236" cy="66" r="9"/><text x="236" y="66">5</text></g><text class="geo-label" x="150" y="60">Senhora do Monte</text></svg></div><div class="geo-caption"><span>1 自由大道</span><span>2 上城</span><span>3 28路电车</span><span>4-5 观景台</span></div></div></div>
-                <div class="day-module"><strong>当天住宿</strong><p>返程飞机上。10.08 从 The Emerald House Lisbon 退房并前往 LIS T1。</p></div>
-                <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-1008-transport-1"><span>已定 EK192 里斯本国际 T1 14:20 → 杜拜国际 T3 00:55+1，参考编号 QDXEKS</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1008-transport-2"><span>已定 EK382 杜拜国际 T3 03:15 → 香港国际 T1 15:25，10.09 抵达，参考编号 QDXEKS</span></label><label class="todo-item"><input type="checkbox" data-task="todo-1008-transport-3"><span>10.08 是返程日，只保留上午轻量路线；确认从酒店去 LIS T1 的出发时间</span></label></div></div><div class="todo-group"><b>门票</b><p>无</p></div></div></div>
-              </div>
+                </div>
             </div>
           </article>
         </div>
@@ -3622,6 +3683,43 @@
         } else {
           localStorage.removeItem(key);
         }
+      });
+    });
+
+    function dayCollapseKey(day) {
+      const date = day.querySelector(".date strong")?.textContent.trim() || "day";
+      return `iberia-day-collapsed-${date}`;
+    }
+
+    function setDayCollapsed(day, collapsed) {
+      const toggle = day.querySelector(".day-toggle");
+      day.classList.toggle("is-collapsed", collapsed);
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", String(!collapsed));
+      }
+      try {
+        if (collapsed) {
+          localStorage.setItem(dayCollapseKey(day), "1");
+        } else {
+          localStorage.removeItem(dayCollapseKey(day));
+        }
+      } catch (error) {}
+    }
+
+    days.forEach((day) => {
+      const dateBlock = day.querySelector(".date");
+      const collapsed = localStorage.getItem(dayCollapseKey(day)) === "1";
+      setDayCollapsed(day, collapsed);
+      dateBlock?.addEventListener("click", (event) => {
+        if (event.target.closest(".day-toggle")) {
+          event.preventDefault();
+        }
+        setDayCollapsed(day, !day.classList.contains("is-collapsed"));
+      });
+      dateBlock?.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        setDayCollapsed(day, !day.classList.contains("is-collapsed"));
       });
     });
 
