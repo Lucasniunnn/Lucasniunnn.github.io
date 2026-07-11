@@ -1142,6 +1142,114 @@
       outline-offset: 2px;
     }
 
+    .check-celebration {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .22s ease;
+    }
+
+    .check-celebration.is-visible {
+      opacity: 1;
+    }
+
+    .check-celebration-card {
+      position: relative;
+      min-width: min(320px, calc(100vw - 48px));
+      max-width: 420px;
+      padding: 18px 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(48, 209, 88, .22), transparent 34%),
+        radial-gradient(circle at 88% 8%, rgba(10, 132, 255, .28), transparent 32%),
+        rgba(13, 15, 22, .86);
+      box-shadow:
+        0 24px 72px rgba(0, 0, 0, .38),
+        inset 0 1px 0 rgba(255, 255, 255, .18);
+      backdrop-filter: blur(22px) saturate(1.45);
+      transform: translateY(12px) scale(.96);
+    }
+
+    .check-celebration.is-visible .check-celebration-card {
+      animation: celebrationPop 1.35s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .check-celebration-title {
+      margin: 0;
+      color: #f8fafc;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .check-celebration-subtitle {
+      margin: 6px 0 0;
+      color: rgba(255, 255, 255, .62);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .confetti-piece {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 7px;
+      height: 13px;
+      border-radius: 4px;
+      background: var(--confetti-color);
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: confettiBurst 980ms cubic-bezier(.14, .74, .3, 1) forwards;
+      animation-delay: var(--delay);
+    }
+
+    @keyframes celebrationPop {
+      0% {
+        opacity: 0;
+        transform: translateY(16px) scale(.94);
+      }
+      14% {
+        opacity: 1;
+        transform: translateY(0) scale(1.02);
+      }
+      24% {
+        transform: translateY(0) scale(1);
+      }
+      78% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px) scale(.98);
+      }
+    }
+
+    @keyframes confettiBurst {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.7) rotate(0deg);
+      }
+      12% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(.9) rotate(var(--rotate));
+      }
+    }
+
     .spot-modal {
       position: fixed;
       inset: 0;
@@ -3521,6 +3629,64 @@
       }
     }
 
+    const celebrationMessages = [
+      "这一站漂亮拿下",
+      "今天的路线又亮了一格",
+      "打卡成功，继续向前",
+      "这一刻已经收进旅程里",
+      "很好，冒险进度更新",
+      "这站完成得很丝滑"
+    ];
+    let celebrationTimer = null;
+
+    function showCheckCelebration(labelText) {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const existing = document.querySelector(".check-celebration");
+      if (existing) existing.remove();
+      if (celebrationTimer) window.clearTimeout(celebrationTimer);
+
+      const message = celebrationMessages[Math.floor(Math.random() * celebrationMessages.length)];
+      const celebration = document.createElement("div");
+      const card = document.createElement("div");
+      const title = document.createElement("p");
+      const subtitle = document.createElement("p");
+      celebration.className = "check-celebration";
+      celebration.setAttribute("role", "status");
+      celebration.setAttribute("aria-live", "polite");
+      card.className = "check-celebration-card";
+      title.className = "check-celebration-title";
+      subtitle.className = "check-celebration-subtitle";
+      title.textContent = message;
+      subtitle.textContent = `${labelText} 已完成`;
+      card.append(title, subtitle);
+      celebration.appendChild(card);
+
+      if (!prefersReducedMotion) {
+        const colors = ["#0a84ff", "#30d158", "#ffd60a", "#ff5ea8", "#64d2ff", "#bf5af2"];
+        for (let i = 0; i < 22; i += 1) {
+          const piece = document.createElement("span");
+          const angle = (Math.PI * 2 * i) / 22;
+          const distance = 86 + Math.random() * 92;
+          const x = `${Math.cos(angle) * distance}px`;
+          const y = `${Math.sin(angle) * distance - 18}px`;
+          piece.className = "confetti-piece";
+          piece.style.setProperty("--x", x);
+          piece.style.setProperty("--y", y);
+          piece.style.setProperty("--rotate", `${180 + Math.random() * 520}deg`);
+          piece.style.setProperty("--delay", `${Math.random() * 90}ms`);
+          piece.style.setProperty("--confetti-color", colors[i % colors.length]);
+          celebration.appendChild(piece);
+        }
+      }
+
+      document.body.appendChild(celebration);
+      requestAnimationFrame(() => celebration.classList.add("is-visible"));
+      celebrationTimer = window.setTimeout(() => {
+        celebration.classList.remove("is-visible");
+        window.setTimeout(() => celebration.remove(), 240);
+      }, prefersReducedMotion ? 1500 : 1350);
+    }
+
     routeItems.forEach((item) => {
       const labelText = item.textContent.trim();
       const label = document.createElement("span");
@@ -3657,6 +3823,7 @@
         const key = routeItemStorageKey(item);
         if (completed) {
           localStorage.setItem(key, "done");
+          showCheckCelebration(routeItemBaseLabel(item));
         } else {
           localStorage.removeItem(key);
         }
