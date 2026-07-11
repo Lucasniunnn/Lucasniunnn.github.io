@@ -3753,6 +3753,9 @@
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         const filter = button.dataset.filter;
+        const filterBar = button.closest(".filters");
+        const filterScrollLeft = filterBar ? filterBar.scrollLeft : 0;
+        const shouldHoldSticky = isMobileItineraryPinned();
         buttons.forEach((item) => {
           const selected = item === button;
           item.classList.toggle("active", selected);
@@ -3764,8 +3767,15 @@
           day.hidden = !visible;
         });
 
-        if (mobileSnapQuery.matches && adventureHero && itinerarySticky && window.scrollY > adventureHero.offsetHeight * 0.5) {
-          window.requestAnimationFrame(scrollToItineraryStart);
+        button.blur();
+        if (filterBar) {
+          filterBar.scrollLeft = filterScrollLeft;
+        }
+        if (shouldHoldSticky) {
+          window.requestAnimationFrame(() => {
+            holdItinerarySticky();
+            if (filterBar) filterBar.scrollLeft = filterScrollLeft;
+          });
         }
       });
     });
@@ -4117,6 +4127,17 @@
     let snapTimer = 0;
     let lastScrollY = window.scrollY;
     let isAutoSnapping = false;
+
+    function isMobileItineraryPinned() {
+      if (!mobileSnapQuery.matches || !adventureHero || !itinerarySticky) return false;
+      return window.scrollY >= adventureHero.offsetHeight - 4;
+    }
+
+    function holdItinerarySticky() {
+      if (!itinerarySticky) return;
+      const targetY = itinerarySticky.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: targetY, behavior: "auto" });
+    }
 
     function scrollToItineraryStart() {
       const snapTarget = itinerarySticky || itineraryHead;
