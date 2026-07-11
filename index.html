@@ -1045,6 +1045,157 @@
       color: var(--body);
     }
 
+    .route-spot[data-spot] {
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .route-spot[data-spot]:hover {
+      transform: translateY(-1px);
+      border-color: rgba(10, 132, 255, .38);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .82), 0 10px 24px rgba(10, 132, 255, .1);
+    }
+
+    .route-spot[data-spot]:focus-visible {
+      outline: 3px solid rgba(10, 132, 255, .28);
+      outline-offset: 2px;
+    }
+
+    .spot-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .spot-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spot-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(5, 8, 15, .58);
+      backdrop-filter: blur(18px) saturate(150%);
+      cursor: pointer;
+    }
+
+    .spot-dialog {
+      position: relative;
+      width: min(760px, 100%);
+      max-height: min(86svh, 820px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .62);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 36px 96px rgba(12, 16, 26, .32);
+      transform: translateY(14px) scale(.98);
+      transition: transform .24s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .spot-modal.is-open .spot-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .spot-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .78);
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+    }
+
+    .spot-media {
+      position: relative;
+      height: clamp(220px, 44vw, 390px);
+      background: linear-gradient(135deg, #dbeafe, #f7d7ff);
+      overflow: hidden;
+    }
+
+    .spot-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 44%;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .36));
+      pointer-events: none;
+    }
+
+    .spot-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .spot-content {
+      padding: 22px 24px 26px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .spot-kicker {
+      margin: 0;
+      color: var(--link);
+      font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .spot-content h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .spot-en {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .spot-desc {
+      margin: 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .spot-source {
+      width: fit-content;
+      color: var(--link);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .spot-source:hover {
+      text-decoration: underline;
+    }
+
     .day-side {
       display: grid;
       gap: 12px;
@@ -2435,7 +2586,7 @@
             <div class="date" data-city="巴塞罗那"><strong>09.26</strong><em>巴塞罗那</em><span>抵达 + Tibidabo 夜景</span></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那机场 BCN T1</li><li class="route-activity">酒店放行李</li><li class="route-spot">加泰罗尼亚广场</li><li class="route-spot">感恩大道</li><li class="route-activity">晚餐</li><li class="route-spot">Tibidabo 夜景</li></ol></div>
+                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那机场 BCN T1</li><li class="route-activity">酒店放行李</li><li class="route-spot" data-spot="placa-catalunya" tabindex="0">加泰罗尼亚广场</li><li class="route-spot" data-spot="passeig-gracia" tabindex="0">感恩大道</li><li class="route-activity">晚餐</li><li class="route-spot" data-spot="tibidabo" tabindex="0">Tibidabo 夜景</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>抵达后轻量进城 + Tibidabo 夜景 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.26 巴塞罗那抵达后路线地图"><path class="geo-water" d="M258 0 C250 56 276 112 252 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M48 166 L250 42 M84 192 L282 78 M110 28 L238 190 M26 112 L260 132"/><path class="geo-route-soft" d="M40 176 C78 150 104 134 132 118"/><path class="geo-route" d="M132 118 L162 94 L146 74 L184 132 L92 34"/><g class="geo-pin"><circle cx="40" cy="176" r="9"/><text x="40" y="176">1</text></g><text class="geo-label" x="52" y="180">BCN T1</text><g class="geo-pin"><circle cx="132" cy="118" r="9"/><text x="132" y="118">2</text></g><text class="geo-label" x="88" y="108">酒店</text><g class="geo-pin"><circle cx="162" cy="94" r="9"/><text x="162" y="94">3</text></g><text class="geo-label" x="174" y="96">加泰广场</text><g class="geo-pin"><circle cx="146" cy="74" r="9"/><text x="146" y="74">4</text></g><text class="geo-label" x="104" y="62">感恩大道</text><g class="geo-pin"><circle cx="184" cy="132" r="9"/><text x="184" y="132">5</text></g><text class="geo-label" x="196" y="138">晚餐</text><g class="geo-pin"><circle cx="92" cy="34" r="9"/><text x="92" y="34">6</text></g><text class="geo-label" x="104" y="38">Tibidabo 夜景</text><text class="geo-label-muted" x="268" y="196">Mediterranean</text></svg></div><div class="geo-caption"><span>1 机场</span><span>3 市中心</span><span>4 Passeig de Gracia</span><span>5 晚餐</span><span>6 Tibidabo</span></div></div></div>
                 <div class="day-module"><strong>当天住宿</strong><p>酒店待定</p></div>
                 <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-1"><span>确认 BCN 机场到酒店路线</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0926-transport-2"><span>确认晚餐后去 Tibidabo 和返程交通</span></label></div></div><div class="todo-group"><b>门票</b><p>无，当天不安排门票</p></div></div></div>
@@ -2447,7 +2598,7 @@
             <div class="date" data-city="巴塞罗那"><strong>09.27</strong><em>巴塞罗那</em><span>哥特区 + Born + 海边</span></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot">凯旋门</li><li class="route-spot">毕加索博物馆</li><li class="route-spot">巴塞罗那主教堂</li><li class="route-spot">叹息桥</li><li class="route-spot">亲吻墙</li><li class="route-spot">波盖利亚市场（备选）</li><li class="route-spot">哥伦布纪念塔</li><li class="route-spot">海边四个盒子日落</li></ol></div>
+                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="arc-triomf" tabindex="0">凯旋门</li><li class="route-spot" data-spot="picasso-museum" tabindex="0">毕加索博物馆</li><li class="route-spot" data-spot="barcelona-cathedral" tabindex="0">巴塞罗那主教堂</li><li class="route-spot" data-spot="pont-del-bisbe" tabindex="0">叹息桥</li><li class="route-spot" data-spot="kiss-wall" tabindex="0">亲吻墙</li><li class="route-spot" data-spot="boqueria" tabindex="0">波盖利亚市场（备选）</li><li class="route-spot" data-spot="columbus-monument" tabindex="0">哥伦布纪念塔</li><li class="route-spot" data-spot="barceloneta-beach" tabindex="0">海边四个盒子日落</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>哥特区 - Born - 市场备选 - 海边日落 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.27 巴塞罗那哥特区路线地图"><path class="geo-water" d="M244 68 C260 108 254 158 230 220 L320 220 L320 66 Z"/><path class="geo-landmark" d="M78 44 L248 180 M64 134 L238 90 M128 28 L172 206"/><path class="geo-route" d="M196 70 L198 104 L176 112 L162 126 L154 148 L190 166 L244 164"/><g class="geo-pin"><circle cx="196" cy="70" r="9"/><text x="196" y="70">1</text></g><text class="geo-label" x="208" y="72">凯旋门</text><g class="geo-pin"><circle cx="198" cy="104" r="9"/><text x="198" y="104">2</text></g><text class="geo-label" x="210" y="108">毕加索</text><g class="geo-pin"><circle cx="176" cy="112" r="9"/><text x="176" y="112">3</text></g><text class="geo-label" x="96" y="106">主教堂</text><g class="geo-pin"><circle cx="162" cy="126" r="9"/><text x="162" y="126">4</text></g><text class="geo-label" x="78" y="132">叹息桥/亲吻墙</text><g class="geo-pin"><circle cx="154" cy="148" r="9"/><text x="154" y="148">5</text></g><text class="geo-label" x="70" y="152">波盖利亚备选</text><g class="geo-pin"><circle cx="190" cy="166" r="9"/><text x="190" y="166">6</text></g><text class="geo-label" x="106" y="176">哥伦布纪念塔</text><g class="geo-pin"><circle cx="244" cy="164" r="9"/><text x="244" y="164">7</text></g><text class="geo-label" x="256" y="168">海边日落</text><text class="geo-label-muted" x="70" y="60">Gothic</text><text class="geo-label-muted" x="206" y="92">Born</text></svg></div><div class="geo-caption"><span>1 凯旋门</span><span>2 Born</span><span>3-4 哥特区</span><span>5 市场备选</span><span>7 海边日落</span></div></div></div>
                 <div class="day-module"><strong>当天住宿</strong><p>酒店待定</p></div>
                 <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><p>无城际交通</p></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0927-ticket-1"><span>订毕加索博物馆 09.27 门票</span></label></div></div></div></div>
@@ -2459,7 +2610,7 @@
             <div class="date" data-city="巴塞罗那"><strong>09.28</strong><em>巴塞罗那</em><span>Blanes + Tossa 海岸线</span></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那 → Blanes</li><li class="route-spot">Blanes 海边 / 老城</li><li class="route-activity">Blanes → Tossa de Mar</li><li class="route-spot">Tossa de Mar 老城</li><li class="route-spot">Tossa 海边</li><li class="route-activity">拉罗卡购物村（待定）</li><li class="route-activity">返回巴塞罗那</li></ol></div>
+                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-activity">巴塞罗那 → Blanes</li><li class="route-spot" data-spot="blanes" tabindex="0">Blanes 海边 / 老城</li><li class="route-activity">Blanes → Tossa de Mar</li><li class="route-spot" data-spot="tossa-old-town" tabindex="0">Tossa de Mar 老城</li><li class="route-spot" data-spot="tossa-beach" tabindex="0">Tossa 海边</li><li class="route-activity">拉罗卡购物村（待定）</li><li class="route-activity">返回巴塞罗那</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>Blanes - Tossa - 拉罗卡待定 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.28 Blanes Tossa 拉罗卡路线地图"><path class="geo-water" d="M198 0 C238 42 252 102 234 220 L320 220 L320 0 Z"/><path class="geo-landmark" d="M54 164 L250 46 M70 190 L232 84 M40 112 L228 136"/><path class="geo-route-soft" d="M70 162 C126 112 154 86 206 48"/><path class="geo-route" d="M70 162 L188 64 L224 36 M188 64 L126 116 L70 162"/><g class="geo-pin"><circle cx="70" cy="162" r="9"/><text x="70" y="162">1</text></g><text class="geo-label" x="34" y="150">巴塞罗那</text><g class="geo-pin"><circle cx="188" cy="64" r="9"/><text x="188" y="64">2</text></g><text class="geo-label" x="142" y="52">Blanes</text><g class="geo-pin"><circle cx="224" cy="36" r="9"/><text x="224" y="36">3</text></g><text class="geo-label" x="236" y="40">Tossa</text><g class="geo-pin"><circle cx="126" cy="116" r="9"/><text x="126" y="116">4</text></g><text class="geo-label" x="138" y="120">拉罗卡待定</text><text class="geo-label-muted" x="238" y="188">Costa Brava</text><text class="geo-label-muted" x="112" y="86">coast day</text></svg></div><div class="geo-caption"><span>1 巴塞罗那</span><span>2 Blanes</span><span>3 Tossa de Mar</span><span>4 拉罗卡待定</span></div></div></div>
                 <div class="day-module"><strong>当天住宿</strong><p>酒店待定</p></div>
                 <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0928-transport-1"><span>确认 Blanes + Tossa 当天交通方式</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0928-transport-2"><span>决定是否加入拉罗卡购物村</span></label></div></div><div class="todo-group"><b>门票</b><p>无，海岸线当天不安排门票</p></div></div></div>
@@ -2471,7 +2622,7 @@
             <div class="date" data-city="巴塞罗那"><strong>09.29</strong><em>巴塞罗那</em><span>高迪线 + 晚飞格拉纳达</span></div>
             <div class="day-body">
               <div class="day-modules">
-                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot">圣家堂</li><li class="route-spot">巴特罗之家</li><li class="route-spot">米拉之家</li><li class="route-spot">桂尔公园（待定）</li><li class="route-activity">返回酒店取行李</li><li class="route-activity">BCN 机场</li><li class="route-activity">21:15-22:45 飞格拉纳达</li><li class="route-activity">格拉纳达酒店 late check-in</li></ol></div>
+                <div class="day-module plan-combo"><strong>当日旅行计划</strong><ol class="route-list"><li class="route-spot" data-spot="sagrada-familia" tabindex="0">圣家堂</li><li class="route-spot" data-spot="casa-batllo" tabindex="0">巴特罗之家</li><li class="route-spot" data-spot="casa-mila" tabindex="0">米拉之家</li><li class="route-spot" data-spot="park-guell" tabindex="0">桂尔公园（待定）</li><li class="route-activity">返回酒店取行李</li><li class="route-activity">BCN 机场</li><li class="route-activity">21:15-22:45 飞格拉纳达</li><li class="route-activity">格拉纳达酒店 late check-in</li></ol></div>
                 <div class="day-module map-module"><strong>旅行地图</strong><div class="trip-map"><div class="map-title"><span>高迪线 + 晚飞格拉纳达 · 真实方位简图</span></div><div class="geo-map"><svg viewBox="0 0 320 220" role="img" aria-label="09.29 巴塞罗那高迪线和飞格拉纳达路线地图"><path class="geo-water" d="M262 58 C274 116 266 164 246 220 L320 220 L320 52 Z"/><path class="geo-landmark" d="M74 48 L246 160 M98 30 L210 190 M54 118 L260 104"/><path class="geo-route" d="M186 58 L146 108 L132 88 L88 42 L132 150 L74 178 L244 184"/><g class="geo-pin"><circle cx="186" cy="58" r="9"/><text x="186" y="58">1</text></g><text class="geo-label" x="198" y="62">圣家堂</text><g class="geo-pin"><circle cx="146" cy="108" r="9"/><text x="146" y="108">2</text></g><text class="geo-label" x="158" y="112">巴特罗之家</text><g class="geo-pin"><circle cx="132" cy="88" r="9"/><text x="132" y="88">3</text></g><text class="geo-label" x="54" y="90">米拉之家</text><g class="geo-pin"><circle cx="88" cy="42" r="9"/><text x="88" y="42">4</text></g><text class="geo-label" x="100" y="42">桂尔公园待定</text><g class="geo-pin"><circle cx="132" cy="150" r="9"/><text x="132" y="150">5</text></g><text class="geo-label" x="56" y="154">酒店取行李</text><g class="geo-pin"><circle cx="74" cy="178" r="9"/><text x="74" y="178">6</text></g><text class="geo-label" x="86" y="184">BCN 机场</text><g class="geo-pin"><circle cx="244" cy="184" r="9"/><text x="244" y="184">7</text></g><text class="geo-label" x="210" y="204">GRX 22:45</text><text class="geo-label-muted" x="116" y="132">Eixample</text><text class="geo-label-muted" x="216" y="166">flight</text></svg></div><div class="geo-caption"><span>1 圣家堂</span><span>2-3 Passeig de Gracia</span><span>4 桂尔公园待定</span><span>6 BCN 21:15</span><span>7 GRX 22:45</span></div></div></div>
                 <div class="day-module"><strong>当天住宿</strong><p>酒店待定</p></div>
                 <div class="day-module other-module"><strong>其他</strong><div class="todo-groups"><div class="todo-group"><b>交通</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-1"><span>订 09.29 BCN → GRX 21:15-22:45 机票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-2"><span>确认高迪线后回酒店取行李时间</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-transport-3"><span>确认格拉纳达酒店 late check-in</span></label></div></div><div class="todo-group"><b>门票</b><div class="todo-list"><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-1"><span>订圣家堂 09.29 门票</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-2"><span>订巴特罗之家或米拉之家其中一个</span></label><label class="todo-item"><input type="checkbox" data-task="todo-0929-ticket-3"><span>桂尔公园待定，决定是否入内</span></label></div></div></div></div>
@@ -2592,10 +2743,145 @@
 
       </main>
 
+  <div class="spot-modal" id="spotModal" aria-hidden="true">
+    <button class="spot-modal-backdrop" type="button" data-close-spot aria-label="关闭景点详情"></button>
+    <section class="spot-dialog" role="dialog" aria-modal="true" aria-labelledby="spotTitle" aria-describedby="spotDescription">
+      <button class="spot-close" type="button" data-close-spot aria-label="关闭">×</button>
+      <div class="spot-media">
+        <img id="spotImage" src="" alt="">
+      </div>
+      <div class="spot-content">
+        <p class="spot-kicker">Barcelona Spot</p>
+        <h3 id="spotTitle">景点</h3>
+        <p class="spot-en" id="spotEnglish"></p>
+        <p class="spot-desc" id="spotDescription"></p>
+        <a class="spot-source" id="spotSource" href="#" target="_blank" rel="noreferrer">图片来源</a>
+      </div>
+    </section>
+  </div>
+
   <script>
     const buttons = document.querySelectorAll(".filter-btn[data-filter]");
     const days = document.querySelectorAll(".day");
     const taskInputs = document.querySelectorAll("[data-task]");
+    const spotModal = document.getElementById("spotModal");
+    const spotImage = document.getElementById("spotImage");
+    const spotTitle = document.getElementById("spotTitle");
+    const spotEnglish = document.getElementById("spotEnglish");
+    const spotDescription = document.getElementById("spotDescription");
+    const spotSource = document.getElementById("spotSource");
+    const spotCloseControls = document.querySelectorAll("[data-close-spot]");
+    const fallbackSpotImage = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80";
+    const spotDetails = {
+      "placa-catalunya": {
+        cn: "加泰罗尼亚广场",
+        en: "Plaça de Catalunya",
+        page: "Plaça_de_Catalunya",
+        desc: "巴塞罗那最核心的城市广场之一，连接哥特区、兰布拉大道和扩展区。适合作为抵达当天的轻量起点，看看城市节奏，也方便后续去感恩大道或吃饭。"
+      },
+      "passeig-gracia": {
+        cn: "感恩大道",
+        en: "Passeig de Gràcia",
+        page: "Passeig_de_Gràcia,_Barcelona",
+        desc: "巴塞罗那最漂亮的主干道之一，两侧有精品店、现代主义建筑和高迪代表作。当天不一定要进楼，沿街散步就很有城市质感。"
+      },
+      "tibidabo": {
+        cn: "Tibidabo 夜景",
+        en: "Tibidabo",
+        page: "Tibidabo",
+        desc: "位于巴塞罗那西北侧山上的观景点，可以俯瞰城市和海岸线。更适合天气清楚、体力还可以的时候去，看夜景很出片，但回程交通要提前确认。"
+      },
+      "arc-triomf": {
+        cn: "凯旋门",
+        en: "Arc de Triomf",
+        page: "Arc_de_Triomf",
+        desc: "1888 年巴塞罗那世界博览会的入口建筑，红砖拱门很有辨识度。它离 Born 区和毕加索博物馆不远，适合放在哥特区路线前半段。"
+      },
+      "picasso-museum": {
+        cn: "毕加索博物馆",
+        en: "Museu Picasso",
+        page: "Museu_Picasso",
+        desc: "馆藏重点是毕加索早期作品，位于老城的中世纪宫殿建筑群里。比起只看打卡点，这里更适合慢慢看艺术脉络，建议提前订票。"
+      },
+      "barcelona-cathedral": {
+        cn: "巴塞罗那主教堂",
+        en: "Barcelona Cathedral",
+        page: "Barcelona_Cathedral",
+        desc: "哥特区的核心地标，外立面和周边小巷都很适合散步拍照。如果时间宽裕可以入内，否则外观加周边路线也足够成立。"
+      },
+      "pont-del-bisbe": {
+        cn: "叹息桥",
+        en: "Pont del Bisbe",
+        page: "Pont_del_Bisbe",
+        desc: "位于哥特区主教街上的新哥特式连廊，是巴塞罗那老城最经典的拍照点之一。它本身停留时间很短，适合作为主教堂周边顺路点。"
+      },
+      "kiss-wall": {
+        cn: "亲吻墙",
+        en: "El Món Neix en Cada Besada",
+        page: "The_World_Begins_With_Every_Kiss",
+        desc: "由许多照片拼成的大型马赛克墙，近看是小照片，远看是一枚亲吻。它离主教堂不远，适合顺路看，不需要单独绕路。"
+      },
+      "boqueria": {
+        cn: "波盖利亚市场（备选）",
+        en: "Mercat de la Boqueria",
+        page: "La_Boqueria",
+        desc: "兰布拉大道旁的传统食品市场，有水果、火腿、海鲜、小吃和果汁摊。它游客很多，所以我把它标成备选：路过想吃点东西就进，不必硬塞成必去。"
+      },
+      "columbus-monument": {
+        cn: "哥伦布纪念塔",
+        en: "Columbus Monument",
+        page: "Columbus_Monument,_Barcelona",
+        desc: "位于兰布拉大道南端、靠近旧港的位置，是从老城走向海边的自然过渡点。适合看一眼、拍照，然后继续往海边走。"
+      },
+      "barceloneta-beach": {
+        cn: "海边四个盒子日落",
+        en: "Barceloneta Beach",
+        page: "La_Barceloneta,_Barcelona",
+        desc: "巴塞罗那最方便抵达的海边区域，适合把哥特区路线收在日落和海风里。这里更像放松结尾，不建议安排太多硬景点。"
+      },
+      "blanes": {
+        cn: "Blanes 海边 / 老城",
+        en: "Blanes",
+        page: "Blanes",
+        desc: "布拉内斯是布拉瓦海岸的门户城市，有海岸、老城和轻松的度假氛围。适合作为这天海岸线的第一站，节奏比市区更松。"
+      },
+      "tossa-old-town": {
+        cn: "Tossa de Mar 老城",
+        en: "Vila Vella, Tossa de Mar",
+        page: "Tossa_de_Mar",
+        desc: "托萨德马尔的老城和城墙是海岸线上的亮点，石墙、海湾和高低错落的街道很适合慢慢走。它比单纯海滩更有记忆点。"
+      },
+      "tossa-beach": {
+        cn: "Tossa 海边",
+        en: "Platja Gran de Tossa de Mar",
+        page: "Tossa_de_Mar",
+        desc: "老城旁边的主海滩，可以把城墙和海湾一起收入视野。适合休息、吹风、拍照，作为海岸线当天的舒服收尾。"
+      },
+      "sagrada-familia": {
+        cn: "圣家堂",
+        en: "Basílica de la Sagrada Família",
+        page: "Sagrada_Família",
+        desc: "高迪最重要的作品，也是巴塞罗那最值得提前订票入内的景点。彩色玻璃、立柱森林和立面细节都需要时间消化，建议留足 1.5 到 2 小时。"
+      },
+      "casa-batllo": {
+        cn: "巴特罗之家",
+        en: "Casa Batlló",
+        page: "Casa_Batlló",
+        desc: "感恩大道上的高迪住宅代表作，外立面像骨骼和海洋童话，内部也很完整。它和米拉之家距离近，二选一入内会更轻松。"
+      },
+      "casa-mila": {
+        cn: "米拉之家",
+        en: "Casa Milà / La Pedrera",
+        page: "Casa_Milà",
+        desc: "高迪设计的公寓建筑，以波浪形石材外立面和屋顶烟囱闻名。相比巴特罗之家，它更偏建筑空间和屋顶景观。"
+      },
+      "park-guell": {
+        cn: "桂尔公园（待定）",
+        en: "Park Güell",
+        page: "Park_Güell",
+        desc: "高迪设计的山坡公园，有马赛克长椅、城市视野和童话感建筑。因为它离市中心稍远，又要赶晚班机，所以先标待定：体力和时间够再去。"
+      }
+    };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -2622,6 +2908,77 @@
           localStorage.removeItem(key);
         }
       });
+    });
+
+    async function getSpotImage(spot) {
+      if (!spot.page) {
+        return { image: fallbackSpotImage, source: "https://unsplash.com/photos/5tDM1jyE3m0" };
+      }
+
+      try {
+        const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(spot.page)}`);
+        if (!response.ok) throw new Error("Image lookup failed");
+        const data = await response.json();
+        return {
+          image: data.originalimage?.source || data.thumbnail?.source || fallbackSpotImage,
+          source: data.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(spot.page)}`
+        };
+      } catch (error) {
+        return {
+          image: fallbackSpotImage,
+          source: `https://en.wikipedia.org/wiki/${encodeURIComponent(spot.page)}`
+        };
+      }
+    }
+
+    async function openSpotModal(spotKey) {
+      const spot = spotDetails[spotKey];
+      if (!spot) return;
+
+      spotTitle.textContent = spot.cn;
+      spotEnglish.textContent = spot.en;
+      spotDescription.textContent = spot.desc;
+      spotImage.src = fallbackSpotImage;
+      spotImage.alt = `${spot.cn} 图片`;
+      spotSource.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(spot.page)}`;
+      spotModal.classList.add("is-open");
+      spotModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      const media = await getSpotImage(spot);
+      if (spotModal.classList.contains("is-open")) {
+        spotImage.src = media.image;
+        spotSource.href = media.source;
+      }
+    }
+
+    function closeSpotModal() {
+      spotModal.classList.remove("is-open");
+      spotModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener("click", (event) => {
+      const spotItem = event.target.closest(".route-spot[data-spot]");
+      if (spotItem) {
+        openSpotModal(spotItem.dataset.spot);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && spotModal.classList.contains("is-open")) {
+        closeSpotModal();
+        return;
+      }
+
+      if ((event.key === "Enter" || event.key === " ") && event.target.matches(".route-spot[data-spot]")) {
+        event.preventDefault();
+        openSpotModal(event.target.dataset.spot);
+      }
+    });
+
+    spotCloseControls.forEach((control) => {
+      control.addEventListener("click", closeSpotModal);
     });
 
     if ("IntersectionObserver" in window) {
