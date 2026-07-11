@@ -990,6 +990,54 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .66);
     }
 
+    .route-label {
+      min-width: 0;
+      display: grid;
+      gap: 2px;
+      transition: color .18s ease, opacity .18s ease, text-decoration-color .18s ease;
+    }
+
+    .route-title {
+      min-width: 0;
+    }
+
+    .route-en {
+      color: rgba(63, 70, 84, .5);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .route-list li.route-enhanced::after {
+      content: none;
+    }
+
+    .route-status-tag {
+      padding: 2px 7px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+      letter-spacing: .02em;
+      cursor: pointer;
+      transition: transform .16s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+
+    .route-status-tag:active {
+      transform: scale(.94);
+    }
+
+    .route-status-tag:focus-visible {
+      outline: 2px solid rgba(10, 132, 255, .45);
+      outline-offset: 2px;
+    }
+
     .route-list li::before {
       content: counter(route-step);
       width: 18px;
@@ -1029,6 +1077,11 @@
       color: #075ec7;
     }
 
+    .route-spot .route-status-tag {
+      background: rgba(10, 132, 255, .14);
+      color: #075ec7;
+    }
+
     .route-activity {
       border-color: rgba(255, 255, 255, .62);
       border-left-color: var(--faint);
@@ -1043,6 +1096,29 @@
       content: "活动";
       background: rgba(255, 255, 255, .55);
       color: var(--body);
+    }
+
+    .route-activity .route-status-tag {
+      background: rgba(255, 255, 255, .55);
+      color: var(--body);
+    }
+
+    .route-list li.is-complete .route-label {
+      color: rgba(63, 70, 84, .48);
+      opacity: .72;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(63, 70, 84, .42);
+    }
+
+    .route-list li.is-complete .route-en {
+      color: rgba(63, 70, 84, .38);
+    }
+
+    .route-list li.is-complete .route-status-tag {
+      background: rgba(48, 209, 88, .18);
+      color: #137a2f;
+      box-shadow: inset 0 0 0 1px rgba(48, 209, 88, .2);
     }
 
     .route-spot[data-spot] {
@@ -1199,6 +1275,34 @@
 
     .spot-source:hover {
       text-decoration: underline;
+    }
+
+    .spot-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .spot-map-link {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #0a84ff;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(10, 132, 255, .24);
+    }
+
+    .spot-map-link:hover {
+      background: #2997ff;
     }
 
     .day-side {
@@ -2425,6 +2529,36 @@
         color: rgba(255, 255, 255, .78);
       }
 
+      .route-activity .route-status-tag {
+        background: rgba(255, 255, 255, .12);
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .route-spot .route-status-tag {
+        background: rgba(10, 132, 255, .18);
+        color: #7cc0ff;
+      }
+
+      .route-list li.is-complete .route-label {
+        color: rgba(255, 255, 255, .38);
+        opacity: 1;
+        text-decoration-color: rgba(255, 255, 255, .42);
+      }
+
+      .route-en {
+        color: rgba(255, 255, 255, .42);
+      }
+
+      .route-list li.is-complete .route-en {
+        color: rgba(255, 255, 255, .3);
+      }
+
+      .route-list li.is-complete .route-status-tag {
+        background: rgba(48, 209, 88, .16);
+        color: #8af0a3;
+        box-shadow: inset 0 0 0 1px rgba(48, 209, 88, .2);
+      }
+
       .spot-modal {
         padding: 18px;
         align-items: center;
@@ -2802,7 +2936,10 @@
         <h3 id="spotTitle">景点</h3>
         <p class="spot-en" id="spotEnglish"></p>
         <p class="spot-desc" id="spotDescription"></p>
-        <a class="spot-source" id="spotSource" href="#" target="_blank" rel="noreferrer">图片来源</a>
+        <div class="spot-actions">
+          <a class="spot-map-link" id="spotMapLink" href="#" target="_blank" rel="noreferrer">前往 Google 地图 ↗</a>
+          <a class="spot-source" id="spotSource" href="#" target="_blank" rel="noreferrer">图片来源</a>
+        </div>
       </div>
     </section>
   </div>
@@ -2811,6 +2948,7 @@
     const buttons = document.querySelectorAll(".filter-btn[data-filter]");
     const days = document.querySelectorAll(".day");
     const taskInputs = document.querySelectorAll("[data-task]");
+    const routeItems = document.querySelectorAll(".route-list li");
     const spotModal = document.getElementById("spotModal");
     const spotImage = document.getElementById("spotImage");
     const spotTitle = document.getElementById("spotTitle");
@@ -2818,6 +2956,7 @@
     const spotKicker = document.getElementById("spotKicker");
     const spotDescription = document.getElementById("spotDescription");
     const spotSource = document.getElementById("spotSource");
+    const spotMapLink = document.getElementById("spotMapLink");
     const spotCloseControls = document.querySelectorAll("[data-close-spot]");
     const fallbackSpotImage = "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80";
     const spotDetails = {
@@ -3019,6 +3158,54 @@
       });
     });
 
+    function routeItemBaseLabel(item) {
+      return item.dataset.routeTitle || item.querySelector(".route-title")?.textContent.trim() || item.textContent.trim();
+    }
+
+    function routeItemStorageKey(item) {
+      const day = item.closest(".day");
+      const date = day?.querySelector(".date strong")?.textContent.trim() || "day";
+      const city = day?.dataset.city || "city";
+      return `iberia-route-check-${date}-${city}-${routeItemBaseLabel(item)}`;
+    }
+
+    function updateRouteItemState(item, completed) {
+      const tag = item.querySelector(".route-status-tag");
+      item.classList.toggle("is-complete", completed);
+      if (tag) {
+        tag.textContent = completed ? "完成" : (item.classList.contains("route-spot") ? "景点" : "活动");
+        tag.setAttribute("aria-pressed", String(completed));
+      }
+    }
+
+    routeItems.forEach((item) => {
+      const labelText = item.textContent.trim();
+      const label = document.createElement("span");
+      const tag = document.createElement("button");
+      const isSpot = item.classList.contains("route-spot");
+      const spot = isSpot ? spotDetails[item.dataset.spot] : null;
+
+      item.textContent = "";
+      item.dataset.routeTitle = labelText;
+      item.classList.add("route-enhanced");
+      label.className = "route-label";
+      label.innerHTML = isSpot && spot
+        ? `<span class="route-title"></span><span class="route-en"></span>`
+        : `<span class="route-title"></span>`;
+      label.querySelector(".route-title").textContent = labelText;
+      if (spot) {
+        label.querySelector(".route-en").textContent = spot.en;
+      }
+      tag.className = "route-status-tag";
+      tag.type = "button";
+      tag.textContent = isSpot ? "景点" : "活动";
+      tag.setAttribute("aria-label", `${labelText} 打卡状态`);
+      tag.setAttribute("aria-pressed", "false");
+      item.append(label, tag);
+
+      updateRouteItemState(item, localStorage.getItem(routeItemStorageKey(item)) === "done");
+    });
+
     async function getSpotImage(spot) {
       if (!spot.page) {
         return { image: fallbackSpotImage, source: "https://unsplash.com/photos/5tDM1jyE3m0" };
@@ -3048,6 +3235,7 @@
       spotKicker.textContent = spot.city ? `${spot.city} Spot` : "Travel Spot";
       spotEnglish.textContent = spot.en;
       spotDescription.textContent = spot.desc;
+      spotMapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${spot.cn} ${spot.en} ${spot.city || ""}`)}`;
       spotImage.src = fallbackSpotImage;
       spotImage.alt = `${spot.cn} 图片`;
       spotSource.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(spot.page)}`;
@@ -3069,6 +3257,21 @@
     }
 
     document.addEventListener("click", (event) => {
+      const statusTag = event.target.closest(".route-status-tag");
+      if (statusTag) {
+        const item = statusTag.closest(".route-list li");
+        if (!item) return;
+        const completed = !item.classList.contains("is-complete");
+        updateRouteItemState(item, completed);
+        const key = routeItemStorageKey(item);
+        if (completed) {
+          localStorage.setItem(key, "done");
+        } else {
+          localStorage.removeItem(key);
+        }
+        return;
+      }
+
       const spotItem = event.target.closest(".route-spot[data-spot]");
       if (spotItem) {
         openSpotModal(spotItem.dataset.spot);
