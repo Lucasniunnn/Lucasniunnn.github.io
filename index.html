@@ -2495,17 +2495,19 @@
         transform: translateY(8px);
       }
 
-      .route-spot[data-spot]:hover,
-      .route-spot[data-spot].is-complete:hover {
+      .route-spot[data-spot]:hover {
         transform: translateY(0);
         border-color: rgba(124, 192, 255, .32);
         background: linear-gradient(135deg, rgba(10, 132, 255, .12), rgba(255, 255, 255, .075));
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 10px 26px rgba(10, 132, 255, .08);
       }
 
-      .route-list li.is-complete {
+      .route-list li.is-complete,
+      .route-spot[data-spot].is-complete:hover {
+        transform: translateY(0);
         border-color: rgba(48, 209, 88, .16);
         background: linear-gradient(135deg, rgba(48, 209, 88, .08), rgba(255, 255, 255, .055));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 10px 26px rgba(48, 209, 88, .08);
       }
 
       .route-list li.is-complete::before {
@@ -3291,6 +3293,7 @@
         } else {
           localStorage.removeItem(key);
         }
+        statusTag.blur();
         return;
       }
 
