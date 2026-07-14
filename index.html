@@ -2344,6 +2344,7 @@
 
       section#days {
         padding: 0 0 44px;
+        overflow-anchor: none;
         background:
           radial-gradient(circle at 12% 36%, rgba(0, 113, 227, .16), transparent 30%),
           radial-gradient(circle at 90% 18%, rgba(255, 45, 132, .12), transparent 28%),
@@ -2611,8 +2612,10 @@
 
       .day-list {
         width: calc(100% - 28px);
+        min-height: calc(100svh - 176px);
         gap: 18px;
         margin-top: 20px;
+        overflow-anchor: none;
       }
 
       .day {
@@ -3260,6 +3263,7 @@
     const spotSource = document.getElementById("spotSource");
     const spotMapLink = document.getElementById("spotMapLink");
     const spotCloseControls = document.querySelectorAll("[data-close-spot]");
+    let suppressMobileSnapUntil = 0;
     const fallbackSpotImage = "./assets/lulu-lumei-iberia-hero-mobile.png";
     const localSpotImages = {
           "placa-catalunya": {
@@ -3819,6 +3823,24 @@
       } catch (error) {}
     }
 
+    function setDayCollapsedWithoutMovingHeader(day, collapsed) {
+      const sticky = document.querySelector(".itinerary-sticky");
+      const hero = document.querySelector(".adventure-hero");
+      const mobile = window.matchMedia("(max-width: 680px)").matches;
+      const wasPinned = mobile && sticky && sticky.getBoundingClientRect().top <= 1;
+
+      suppressMobileSnapUntil = Date.now() + 900;
+      setDayCollapsed(day, collapsed);
+
+      if (!wasPinned || !hero) return;
+      const pinnedY = hero.offsetTop + hero.offsetHeight;
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: pinnedY, behavior: "auto" });
+        });
+      });
+    }
+
     days.forEach((day) => {
       const dateBlock = day.querySelector(".date");
       const collapsed = localStorage.getItem(dayCollapseKey(day)) === "1";
@@ -3827,12 +3849,12 @@
         if (event.target.closest(".day-toggle")) {
           event.preventDefault();
         }
-        setDayCollapsed(day, !day.classList.contains("is-collapsed"));
+        setDayCollapsedWithoutMovingHeader(day, !day.classList.contains("is-collapsed"));
       });
       dateBlock?.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
-        setDayCollapsed(day, !day.classList.contains("is-collapsed"));
+        setDayCollapsedWithoutMovingHeader(day, !day.classList.contains("is-collapsed"));
       });
     });
 
@@ -4134,6 +4156,9 @@
     let snapTimer = 0;
     let lastScrollY = window.scrollY;
     let isAutoSnapping = false;
+    let lastTouchY = null;
+    let userScrollDirection = null;
+    let lastUserScrollIntentAt = 0;
 
     function isMobileItineraryPinned() {
       if (!mobileSnapQuery.matches || !adventureHero || !itinerarySticky) return false;
@@ -4156,8 +4181,10 @@
       if (!mobileSnapQuery.matches || reducedMotionQuery.matches || !adventureHero || !itineraryHead || isAutoSnapping) return;
 
       const currentY = window.scrollY;
-      const direction = currentY > lastScrollY ? "down" : "up";
+      const measuredDirection = currentY > lastScrollY ? "down" : "up";
       lastScrollY = currentY;
+      if (Date.now() < suppressMobileSnapUntil || Date.now() - lastUserScrollIntentAt > 1200) return;
+      const direction = userScrollDirection || measuredDirection;
       window.clearTimeout(snapTimer);
 
       snapTimer = window.setTimeout(() => {
@@ -4177,6 +4204,27 @@
         }
       }, 110);
     }
+
+    window.addEventListener("touchstart", (event) => {
+      lastTouchY = event.touches[0]?.clientY ?? null;
+      userScrollDirection = null;
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (event) => {
+      const touchY = event.touches[0]?.clientY;
+      if (touchY == null || lastTouchY == null) return;
+      const delta = touchY - lastTouchY;
+      if (Math.abs(delta) < 2) return;
+      userScrollDirection = delta < 0 ? "down" : "up";
+      lastUserScrollIntentAt = Date.now();
+      lastTouchY = touchY;
+    }, { passive: true });
+
+    window.addEventListener("wheel", (event) => {
+      if (!event.deltaY) return;
+      userScrollDirection = event.deltaY > 0 ? "down" : "up";
+      lastUserScrollIntentAt = Date.now();
+    }, { passive: true });
 
     window.addEventListener("scroll", maybeSnapMobilePage, { passive: true });
 
